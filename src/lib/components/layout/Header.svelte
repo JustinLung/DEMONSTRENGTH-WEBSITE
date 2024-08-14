@@ -32,9 +32,9 @@
     }}
   >
     {#if openMenu}
-      MENU
-    {:else}
       CLOSE
+    {:else}
+      MENU
     {/if}
   </button>
 </header>
