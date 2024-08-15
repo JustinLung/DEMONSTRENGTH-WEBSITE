@@ -4,7 +4,7 @@
 
   let openMenu = false;
 
-  const links = [
+  export const links = [
     { title: "Home", href: "/" },
     { title: "About", href: "/about" },
     { title: "Coaching", href: "/coaching" },
@@ -26,16 +26,28 @@
   </nav>
 
   <button
-    class="block md:hidden relative z-10"
+    class="flex flex-col justify-center items-center md:hidden relative z-10"
     on:click={() => {
       openMenu = !openMenu;
     }}
   >
-    {#if openMenu}
-      CLOSE
-    {:else}
-      MENU
-    {/if}
+    <span
+      class="bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm"
+      class:rotate-45={openMenu}
+      class:translate-y-1={openMenu}
+      class:-translate-y-0.5={!openMenu}
+    />
+    <span
+      class="bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5"
+      class:opacity-0={openMenu}
+      class:opacity-100={!openMenu}
+    />
+    <span
+      class="bg-white block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm"
+      class:-rotate-45={openMenu}
+      class:-translate-y-1={openMenu}
+      class:translate-y-0.5={!openMenu}
+    />
   </button>
 </header>
 

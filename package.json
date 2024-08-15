@@ -33,6 +33,7 @@
 	"type": "module",
 	"dependencies": {
 		"@poppanator/sveltekit-svg": "^4.1.3",
-		"@studio-freight/lenis": "^1.0.25"
+		"@studio-freight/lenis": "^1.0.25",
+		"embla-carousel-svelte": "^8.1.8"
 	}
 }

@@ -1,5 +1,9 @@
 <script lang="ts">
-	import Hero from "$lib/components/shared/Hero.svelte";
+  import Hero from "$lib/components/shared/Hero.svelte";
+  import Reviews from "$lib/components/shared/Reviews.svelte";
+
+  export let reviews: any[];
 </script>
 
-<!-- <Hero title="DEMONSTRENGTH" description="Bring Powerlifting to the next level" src="/assets/images/hero.jpg" alt="Demonstrength Athletes"/> -->
+<Hero title="DEMONSTRENGTH" description="Bring Powerlifting to the next level" src="/assets/images/hero.jpg" alt="Demonstrength Athletes"/>
+<!-- <Reviews {reviews} /> -->
