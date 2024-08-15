@@ -13,7 +13,7 @@
 </script>
 
 <header class="flex items-center justify-between container mx-auto p-4">
-  <h1 class="text-xl font-bold relative z-10">DEMONSTRENGTH</h1>
+  <a href="/" class="text-xl font-bold relative z-10">DEMONSTRENGTH</a>
 
   <nav class="hidden md:block">
     <ul class="flex gap-4">
