@@ -1,23 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+body {
+  font-family: "Inter", sans-serif;
+}
+
 html.lenis {
-	height: auto;
+  height: auto;
 }
 
 .lenis.lenis-smooth {
-	scroll-behavior: auto;
+  scroll-behavior: auto;
 }
 
 .lenis.lenis-smooth [data-lenis-prevent] {
-	overscroll-behavior: contain;
+  overscroll-behavior: contain;
 }
 
 .lenis.lenis-stopped {
-	overflow: hidden;
+  overflow: hidden;
 }
 
 .lenis.lenis-scrolling iframe {
-	pointer-events: none;
+  pointer-events: none;
 }

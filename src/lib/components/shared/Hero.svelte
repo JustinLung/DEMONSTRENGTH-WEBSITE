@@ -1,15 +1,17 @@
 <script lang="ts">
-    export let title: string;
-    export let description: string;
-    export let src: string;
-    export let alt: string;
-  </script>
-  
-  <section class="relative w-full h-[60svh] md:h-[80svh] -z-10">
-    <img src={src} alt={alt} class="object-cover w-full h-full object-center" />
-    <div class="absolute inset-0 flex flex-col items-center justify-center text-white bg-black bg-opacity-50 px-4">
-      <h1 class="text-4xl md:text-6xl font-bold">{title}</h1>
-      <p class="mt-4 text-lg md:text-2xl">{description}</p>
-    </div>
-  </section>
-  
+  export let title: string;
+  export let description: string;
+</script>
+
+<!-- <section
+  class="grid place-content-center container mx-auto md:h-[60svh] bg-amber-600"
+>
+  <h1
+    class="font-bold text-[2.5rem] md:text-[5rem] text-center md:leading-[114px] max-w-[50rem] mx-auto"
+  >
+    {title}
+  </h1>
+  <p class="md:mt-[26px] md:text-[1.5rem] text-center">
+    {description}
+  </p>
+</section> -->

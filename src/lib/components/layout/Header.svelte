@@ -5,25 +5,30 @@
   let openMenu = false;
 
   export const links = [
-    { title: "Home", href: "/" },
-    { title: "About", href: "/about" },
-    { title: "Coaching", href: "/coaching" },
-    { title: "Contact", href: "/contact" },
+    { title: "Programs", href: "/" },
+    { title: "Over ons", href: "/about" },
+    { title: "Gallerij", href: "/coaching" },
   ];
 </script>
 
-<header class="flex items-center justify-between container mx-auto p-4">
-  <a href="/" class="text-xl font-bold relative z-10">DEMONSTRENGTH</a>
+<header class="flex items-center justify-between container mx-auto p-[16px]">
+  <a href="/" class="text-[1.5rem] font-bold relative z-10">demonstrength.</a>
 
-  <nav class="hidden md:block">
-    <ul class="flex gap-4">
+  <nav class="hidden md:block text-[1rem]">
+    <ul class="flex gap-4 justify-center text-[#9C9C9C]">
       {#each links as link}
         <li>
-          <a href={link.href} class="hover:underline">{link.title}</a>
+          <a href={link.href} class="hover:underline block">{link.title}</a>
         </li>
       {/each}
     </ul>
   </nav>
+
+  <a
+    href="/"
+    class="hidden md:block bg-[#642869] px-[16px] py-[10px] rounded-full"
+    >Start Coaching</a
+  >
 
   <button
     class="flex flex-col justify-center items-center md:hidden relative z-10"
@@ -53,15 +58,15 @@
 
 {#if openMenu}
   <nav
-    class="md:hidden p-4 fixed h-screen bg-purple-800 w-full top-0"
+    class="md:hidden p-4 fixed h-screen bg-[#642869] w-full top-0"
     transition:slide={{ duration: 800, easing: easeOutExpo }}
   >
-    <ul class="flex flex-col justify-center items-center w-full h-screen gap-4">
+    <ul class="flex flex-col justify-center w-full h-screen gap-4">
       {#each links as link}
         <li>
           <a
             href={link.href}
-            class="text-[2.5rem] uppercase"
+            class="text-[2.5rem]"
             on:click={() => {
               openMenu = false;
             }}
@@ -70,6 +75,9 @@
           </a>
         </li>
       {/each}
+      <li>
+        <a href="/" class="md:hidden block text-[2.5rem]">Start Coaching</a>
+      </li>
     </ul>
   </nav>
 {/if}

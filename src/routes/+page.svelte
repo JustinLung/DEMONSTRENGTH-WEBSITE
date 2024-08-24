@@ -3,5 +3,8 @@
   import Reviews from "$lib/components/shared/Reviews.svelte";
 </script>
 
-<Hero title="DEMONSTRENGTH" description="Bring Powerlifting to the next level" src="/assets/images/hero.jpg" alt="Demonstrength Athletes"/>
+<Hero
+  title="Grow your inner Demon strength."
+  description="Grow your inner demon met coaching van demon strength. Samen gaan wij onze PR’s door het dak heen!"
+/>
 <!-- <Reviews {reviews} /> -->
