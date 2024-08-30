@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Hero from '$lib/components/shared/Hero.svelte';
 </script>
 
