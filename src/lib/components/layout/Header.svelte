@@ -120,6 +120,14 @@
 					display: none;
 				}
 
+				li:first-child {
+					display: block;
+
+					@media (--md) {
+						display: none;
+					}
+				}
+
 				a {
 					color: var(--grey);
 				}
