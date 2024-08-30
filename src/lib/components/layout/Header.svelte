@@ -2,6 +2,7 @@
 	import { slide } from 'svelte/transition';
 	import { easeInOutExpo } from '$lib/utils/transition';
 	import { onDestroy, onMount } from 'svelte';
+	import Button from '../shared/Button.svelte';
 
 	let links = [
 		{
@@ -9,7 +10,7 @@
 			title: 'Home'
 		},
 		{
-			href: '/about',
+			href: '/',
 			title: 'About'
 		},
 		{
@@ -17,10 +18,16 @@
 			title: 'Programs'
 		},
 		{
-			href: '/gallerij',
+			href: '/',
 			title: 'Gallerij'
+		},
+		{
+			href: '/',
+			title: 'Start coaching'
 		}
 	];
+
+	const showButton = links.length > 0 && links[links.length - 1].title === 'Start coaching';
 
 	let isOpen = $state(false);
 
@@ -56,6 +63,12 @@
 			{/each}
 		</ul>
 	</nav>
+
+	{#if showButton}
+		<Button classes="coaching-button" primary href={links[links.length - 1].href}
+			>{links[links.length - 1].title}</Button
+		>
+	{/if}
 
 	<button onclick={openMenu} class="hamburger-menu">
 		<span class:isOpen></span>
@@ -103,9 +116,21 @@
 				display: flex;
 				gap: 20px;
 
+				li:last-child {
+					display: none;
+				}
+
 				a {
 					color: var(--grey);
 				}
+			}
+		}
+
+		:global(.coaching-button) {
+			display: none;
+
+			@media (--md) {
+				display: block;
 			}
 		}
 

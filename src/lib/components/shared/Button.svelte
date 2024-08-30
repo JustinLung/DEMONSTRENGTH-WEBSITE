@@ -2,12 +2,12 @@
 	import type { Snippet } from 'svelte';
 
 	interface ButtonProps {
-		class?: string;
+		classes?: string;
 		href?: string;
 		children: Snippet;
 		primary?: boolean;
 	}
-	const { class: classes, href, primary = false, children, ...rest }: ButtonProps = $props();
+	const { classes, href, primary = false, children, ...rest }: ButtonProps = $props();
 
 	const component = href ? 'a' : 'button';
 </script>
