@@ -31,24 +31,29 @@
 
 	let isOpen = $state(false);
 
-	const mediaQuery = window.matchMedia('(min-width: 48em)');
+	let mediaQuery: MediaQueryList;
 
 	function openMenu() {
 		isOpen = !isOpen;
 	}
 
 	function handleResize() {
-		if (mediaQuery.matches) {
+		if (mediaQuery?.matches) {
 			isOpen = false;
 		}
 	}
 
 	onMount(() => {
-		mediaQuery.addEventListener('change', handleResize);
+		if (typeof window !== 'undefined') {
+			mediaQuery = window.matchMedia('(min-width: 48em)');
+			mediaQuery.addEventListener('change', handleResize);
+		}
 	});
 
 	onDestroy(() => {
-		mediaQuery.removeEventListener('change', handleResize);
+		if (mediaQuery) {
+			mediaQuery.removeEventListener('change', handleResize);
+		}
 	});
 </script>
 
