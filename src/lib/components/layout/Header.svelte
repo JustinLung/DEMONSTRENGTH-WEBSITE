@@ -10,7 +10,7 @@
 			title: 'Home'
 		},
 		{
-			href: '/',
+			href: '/#about',
 			title: 'About'
 		},
 		{
