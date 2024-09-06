@@ -21,10 +21,18 @@
 		}
 	}
 
+	function handleKeyDown(event: KeyboardEvent) {
+		if (event.key === 'Escape') {
+			isOpen = false;
+		}
+	}
+
 	onMount(() => {
 		if (typeof window !== 'undefined') {
 			mediaQuery = window.matchMedia('(min-width: 48em)');
 			mediaQuery.addEventListener('change', handleResize);
+
+			window.addEventListener('keydown', handleKeyDown);
 		}
 	});
 
