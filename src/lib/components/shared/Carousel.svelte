@@ -1,11 +1,13 @@
 <script lang="ts">
 	import EmblaCarousel, { type EmblaCarouselType } from 'embla-carousel';
+	import CarouselItem from './CarouselItem.svelte';
 
 	interface CarouselInterface {
 		title: string;
+		items: any;
 	}
 
-	const { title }: CarouselInterface = $props();
+	const { title, items }: CarouselInterface = $props();
 
 	let canPrev = $state(false);
 	let canNext = $state(false);
@@ -47,14 +49,9 @@
 	</div>
 	<div class="embla" bind:this={emblaNode}>
 		<div class="embla__container">
-			<div class="embla__slide">Slide 1</div>
-			<div class="embla__slide">Slide 2</div>
-			<div class="embla__slide">Slide 3</div>
-			<div class="embla__slide">Slide 3</div>
-			<div class="embla__slide">Slide 3</div>
-			<div class="embla__slide">Slide 3</div>
-			<div class="embla__slide">Slide 3</div>
-			<div class="embla__slide">Slide 3</div>
+			{#each items as item}
+				<CarouselItem title={item.title} />
+			{/each}
 		</div>
 	</div>
 </section>
@@ -113,22 +110,5 @@
 	.embla__container {
 		display: flex;
 		gap: 20px;
-	}
-
-	.embla__slide {
-		border-radius: 16px;
-		background: var(--primary);
-
-		min-width: 301px;
-		min-height: 349px;
-
-		display: flex;
-		justify-content: center;
-		align-items: center;
-
-		@media (--lg) {
-			min-width: 401px;
-			min-height: 449px;
-		}
 	}
 </style>
