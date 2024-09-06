@@ -2,17 +2,7 @@
 	import Hero from '$lib/components/shared/Hero.svelte';
 	import Carousel from '$lib/components/shared/Carousel.svelte';
 	import About from '$lib/components/shared/About.svelte';
-
-	const items = [
-		{ title: 'Slide 1' },
-		{ title: 'Slide 2' },
-		{ title: 'Slide 3' },
-		{ title: 'Slide 3' },
-		{ title: 'Slide 3' },
-		{ title: 'Slide 3' },
-		{ title: 'Slide 3' },
-		{ title: 'Slide 3' }
-	];
+	import { items } from '$lib/utils/data/placeholderData';
 </script>
 
 <Hero
