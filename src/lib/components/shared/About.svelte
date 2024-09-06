@@ -51,6 +51,8 @@
 		h2 {
 			margin: 0;
 			font-size: 1.5rem;
+			font-weight: 500;
+			max-width: 380px;
 
 			@media (--lg) {
 				font-size: 2rem;

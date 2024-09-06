@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import EmblaCarousel from 'embla-carousel';
+	import EmblaCarousel, { type EmblaCarouselType } from 'embla-carousel';
 
 	interface CarouselInterface {
 		title: string;
@@ -8,21 +7,32 @@
 
 	const { title }: CarouselInterface = $props();
 
-	let embla: any;
+	let canPrev = $state(false);
+	let canNext = $state(false);
+
+	let embla: EmblaCarouselType;
 	let emblaNode: HTMLDivElement;
 
 	const options = {
 		loop: false
 	};
 
-	onMount(() => {
+	$effect(() => {
 		embla = EmblaCarousel(emblaNode, options);
+
+		const updateButtonStates = () => {
+			canPrev = embla.canScrollPrev();
+			canNext = embla.canScrollNext();
+		};
+
+		embla.on('select', updateButtonStates);
+		updateButtonStates();
+
 		return () => {
 			if (embla) embla.destroy();
 		};
 	});
 
-	// Handlers for next and previous buttons
 	const prev = () => embla && embla.scrollPrev();
 	const next = () => embla && embla.scrollNext();
 </script>
@@ -30,15 +40,20 @@
 <section class="carousel container">
 	<div class="carousel-header">
 		<h2>{title}</h2>
-		<div>
-			<button onclick={prev}>Previous</button>
-			<button onclick={next}>Next</button>
+		<div class="button-container">
+			<button onclick={prev} disabled={!canPrev}>Previous</button>
+			<button onclick={next} disabled={!canNext}>Next</button>
 		</div>
 	</div>
 	<div class="embla" bind:this={emblaNode}>
 		<div class="embla__container">
 			<div class="embla__slide">Slide 1</div>
 			<div class="embla__slide">Slide 2</div>
+			<div class="embla__slide">Slide 3</div>
+			<div class="embla__slide">Slide 3</div>
+			<div class="embla__slide">Slide 3</div>
+			<div class="embla__slide">Slide 3</div>
+			<div class="embla__slide">Slide 3</div>
 			<div class="embla__slide">Slide 3</div>
 		</div>
 	</div>
@@ -47,14 +62,45 @@
 <style lang="postcss">
 	.carousel {
 		position: relative;
+		margin-bottom: 110px;
 
 		.carousel-header {
 			display: flex;
 			justify-content: space-between;
+			margin-bottom: 29px;
+
+			@media (--lg) {
+				margin-bottom: 59px;
+			}
+
+			.button-container {
+				display: flex;
+				gap: 24px;
+
+				button {
+					background-color: transparent;
+					color: var(--white);
+					cursor: pointer;
+					border: none;
+
+					&:disabled {
+						color: var(--grey);
+					}
+				}
+			}
 
 			h2 {
-				font-size: 2.25rem;
-				font-weight: 500;
+				font-size: 1.5rem;
+
+				@media (--lg) {
+					font-size: 2.25rem;
+					font-weight: 500;
+				}
+			}
+
+			button:disabled {
+				opacity: 0.5;
+				cursor: not-allowed;
 			}
 		}
 	}
@@ -65,11 +111,23 @@
 
 	.embla__container {
 		display: flex;
+		gap: 20px;
 	}
 
 	.embla__slide {
-		min-width: 100%;
-		padding: 50px;
-		text-align: center;
+		border-radius: 16px;
+		background: var(--primary);
+
+		min-width: 301px;
+		min-height: 349px;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		@media (--lg) {
+			min-width: 401px;
+			min-height: 449px;
+		}
 	}
 </style>
