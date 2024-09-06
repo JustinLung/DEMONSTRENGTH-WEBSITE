@@ -84,7 +84,7 @@
 
 		.main-title {
 			position: relative;
-			z-index: 1;
+			z-index: 3;
 			font-weight: 500;
 			font-size: 1.5rem;
 		}
@@ -131,6 +131,7 @@
 			position: fixed;
 			top: 0;
 			left: 0;
+			z-index: 2;
 
 			height: calc(100 * var(--svh));
 			width: 100%;
@@ -160,7 +161,7 @@
 			pointer-events: all;
 			position: relative;
 			cursor: pointer;
-			z-index: 1;
+			z-index: 3;
 			height: 30px;
 			width: 30px;
 

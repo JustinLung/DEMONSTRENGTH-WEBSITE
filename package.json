@@ -36,6 +36,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@studio-freight/lenis": "^1.0.42",
 		"embla-carousel": "^8.2.1"
 	}
 }
