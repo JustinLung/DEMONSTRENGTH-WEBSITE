@@ -59,7 +59,7 @@
 <style lang="postcss">
 	.carousel {
 		position: relative;
-		z-index: 1;
+		z-index: 9;
 		margin-bottom: 110px;
 
 		.carousel-header {
