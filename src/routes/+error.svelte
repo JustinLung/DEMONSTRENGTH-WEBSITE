@@ -27,6 +27,7 @@
 		h1 {
 			font-size: 8rem;
 			font-weight: 500;
+			line-height: 100px;
 		}
 
 		p {
@@ -34,6 +35,7 @@
 			font-size: 1.25rem;
 			max-width: 600px;
 			text-align: center;
+			color: var(--grey);
 		}
 	}
 </style>
