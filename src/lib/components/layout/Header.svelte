@@ -3,29 +3,7 @@
 	import { easeInOutExpo } from '$lib/utils/transition';
 	import { onDestroy, onMount } from 'svelte';
 	import Button from '../shared/Button.svelte';
-
-	let links = [
-		{
-			href: '/',
-			title: 'Home'
-		},
-		{
-			href: '/#about',
-			title: 'About'
-		},
-		{
-			href: '/',
-			title: 'Programs'
-		},
-		{
-			href: '/',
-			title: 'Gallerij'
-		},
-		{
-			href: '/',
-			title: 'Start coaching'
-		}
-	];
+	import { links } from '$lib/utils/links';
 
 	const showButton = links.length > 0 && links[links.length - 1].title === 'Start coaching';
 

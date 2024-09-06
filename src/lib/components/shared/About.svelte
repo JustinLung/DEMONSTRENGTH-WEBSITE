@@ -25,15 +25,15 @@
 			flex-direction: row;
 			align-items: center;
 			justify-content: center;
-			gap: 80px;
+			gap: 50px;
 		}
 
 		.about-image {
 			width: 100%;
-			max-width: 600px;
 			margin-bottom: 20px;
 
 			@media (--lg) {
+				max-width: 600px;
 				width: 50%;
 				margin-bottom: 0;
 			}
