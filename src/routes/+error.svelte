@@ -5,9 +5,9 @@
 <section class="container">
 	<h1>404</h1>
 	<p>
-		Het lijkt erop dat deze pagina niet bestaat, maar geen zorgen, jouw fitnessdoelen zijn nog
-		steeds binnen handbereik! Probeer een andere oefening (pagina), of spring terug naar onze
-		homepage voor nieuwe inspiratie.
+		Het lijkt erop dat deze pagina niet bestaat. Geen paniek! Je kunt terug naar onze homepage om je
+		fitnessinspiratie weer op te bouwen. Blijf in beweging en ontdek wat je nog meer kunt bereiken!
+		💪
 	</p>
 	<Button href="/" primary>Home</Button>
 </section>
