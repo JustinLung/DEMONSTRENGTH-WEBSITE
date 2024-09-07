@@ -76,7 +76,12 @@
 			<ul>
 				{#each links as link}
 					<li>
-						<a href={link.href}>{link.title}</a>
+						<a
+							href={link.href}
+							onclick={() => {
+								isOpen = false;
+							}}>{link.title}</a
+						>
 					</li>
 				{/each}
 			</ul>
