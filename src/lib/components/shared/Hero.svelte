@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { onDestroy, onMount } from 'svelte';
 	import Button from './Button.svelte';
+	import gsap from 'gsap';
+	import { easeOutExpo } from '$lib/utils/transition';
 
 	interface HeroProps {
 		title: string;
@@ -20,21 +22,38 @@
 	}
 
 	onMount(() => {
-		updateHeaderHeight();
-		window.addEventListener('resize', updateHeaderHeight);
+		const tl = gsap.timeline({
+			defaults: {
+				ease: easeOutExpo
+			}
+		});
+
+		tl.to('.stagger', {
+			opacity: 1,
+			y: 0,
+			stagger: 0.15,
+			delay: 0.3
+		});
+
+		if (typeof window !== 'undefined') {
+			updateHeaderHeight();
+			window.addEventListener('resize', updateHeaderHeight);
+		}
 	});
 
 	onDestroy(() => {
-		window.removeEventListener('resize', updateHeaderHeight);
+		if (typeof window !== 'undefined') {
+			window.removeEventListener('resize', updateHeaderHeight);
+		}
 	});
 </script>
 
 <section class="container" bind:this={hero as any}>
-	<h1>{title}</h1>
-	<p>{description}</p>
-	<div class="button-container">
-		<Button href="/coaching" primary>Start coaching</Button>
-		<Button href="/#about">Over ons</Button>
+	<h1 class="stagger">{title}</h1>
+	<p class="stagger">{description}</p>
+	<div class="button-container stagger">
+		<Button href="/coaching" primary classes="stagger">Start coaching</Button>
+		<Button href="/#about" classes="stagger">Over ons</Button>
 	</div>
 </section>
 
@@ -83,5 +102,10 @@
 				gap: 16px;
 			}
 		}
+	}
+
+	.stagger {
+		opacity: 0;
+		transform: translateY(20px);
 	}
 </style>
