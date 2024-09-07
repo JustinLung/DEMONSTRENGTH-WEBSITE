@@ -132,6 +132,13 @@
 					}
 
 					svg {
+						width: 24px;
+						height: 24px;
+
+						@media (--lg) {
+							width: 34px;
+							height: 34px;
+						}
 						path {
 							strokg: var(--white);
 						}
