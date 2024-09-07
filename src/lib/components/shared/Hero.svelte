@@ -34,7 +34,7 @@
 	<p>{description}</p>
 	<div class="button-container">
 		<Button href="/coaching" primary>Start coaching</Button>
-		<Button href="/about">Over ons</Button>
+		<Button href="/#about">Over ons</Button>
 	</div>
 </section>
 

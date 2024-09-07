@@ -4,6 +4,10 @@ export const links = [
         title: 'Home'
     },
     {
+        href: '/#coaches',
+        title: 'Coaches'
+    },
+    {
         href: '/#about',
         title: 'About'
     },
