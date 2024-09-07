@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onDestroy, onMount } from 'svelte';
 	import Button from './Button.svelte';
 
 	interface HeroProps {
@@ -7,9 +8,28 @@
 	}
 
 	let { title, description }: HeroProps = $props();
+	let headerHeight = $state(0);
+	let hero: HTMLTableSectionElement;
+
+	function updateHeaderHeight() {
+		const headerElement = document.querySelector('header');
+		if (headerElement && hero) {
+			headerHeight = headerElement.offsetHeight;
+			hero.style.marginTop = `${headerHeight}px`;
+		}
+	}
+
+	onMount(() => {
+		updateHeaderHeight();
+		window.addEventListener('resize', updateHeaderHeight);
+	});
+
+	onDestroy(() => {
+		window.removeEventListener('resize', updateHeaderHeight);
+	});
 </script>
 
-<section class="container">
+<section class="container" bind:this={hero as any}>
 	<h1>{title}</h1>
 	<p>{description}</p>
 	<div class="button-container">

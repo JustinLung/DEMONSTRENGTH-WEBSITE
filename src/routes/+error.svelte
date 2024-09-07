@@ -14,7 +14,7 @@
 
 <style lang="postcss">
 	section {
-		min-height: calc(var(--svh) * 75);
+		min-height: calc(var(--svh) * 83);
 
 		display: flex;
 		flex-direction: column;
