@@ -8,7 +8,7 @@
 </script>
 
 <section class="container" id="about">
-	<img src="/images/placeholder.png" alt="placeholder" class="about-image" />
+	<img src="/images/placeholder.png" alt="placeholder" class="about-image" draggable="false" />
 	<div class="about-text">
 		<h2>{title}</h2>
 		<p>{description}</p>
