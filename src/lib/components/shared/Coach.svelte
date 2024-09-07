@@ -1,4 +1,8 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+
+	import { easeOutExpo } from '$lib/utils/transition';
+
 	interface CoachInterface {
 		title: string;
 		description: string;
@@ -8,9 +12,33 @@
 		tiktok: string;
 	}
 	const { title, description, src, alt, instagram, tiktok }: CoachInterface = $props();
+
+	let coachEl: HTMLElement;
+
+	onMount(async () => {
+		const { gsap } = await import('gsap');
+		const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+		gsap.registerPlugin(ScrollTrigger);
+
+		requestAnimationFrame(() => {
+			gsap.to(coachEl, {
+				scrollTrigger: {
+					trigger: coachEl,
+					start: 'top 40%',
+					end: 'bottom',
+					toggleActions: 'play none none',
+					markers: true
+				},
+				opacity: 1,
+				y: 0,
+				duration: 0.6,
+				ease: easeOutExpo
+			});
+		});
+	});
 </script>
 
-<article>
+<article class="coach" bind:this={coachEl}>
 	<img {src} {alt} />
 	<div class="content-container">
 		<h3>{title}</h3>
@@ -75,6 +103,8 @@
 		max-height: 1120px;
 		background-color: var(--tertiary);
 		padding: 1.5rem 1rem;
+		opacity: 0;
+		transform: translateY(30px);
 
 		@media (--md) {
 			flex-direction: row;
