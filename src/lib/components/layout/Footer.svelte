@@ -53,7 +53,7 @@
 		<span>
 			&copy; {new Date().getFullYear()} &#183; All rights Reserved.
 		</span>
-		<a href="/">Terms & Conditions</a>
+		<a href="/terms-and-conditions">Terms & Conditions</a>
 	</div>
 </footer>
 
