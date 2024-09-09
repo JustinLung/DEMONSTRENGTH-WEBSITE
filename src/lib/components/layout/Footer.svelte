@@ -9,7 +9,7 @@
 		<a href="/" class="main-title"> demonstrength. </a>
 		<nav>
 			{#each trimmedLinks as link}
-				<a href={link.href}>{link.title}</a>
+				<a href={link.href} class="main-links">{link.title}</a>
 			{/each}
 		</nav>
 		<a
@@ -53,7 +53,7 @@
 		<span>
 			&copy; {new Date().getFullYear()} &#183; All rights Reserved.
 		</span>
-		<a href="/terms-and-conditions">Terms & Conditions</a>
+		<a href="/terms-and-conditions" class="terms-link">Terms & Conditions</a>
 	</div>
 </footer>
 
@@ -62,8 +62,34 @@
 		background-color: var(--tertiary);
 		color: var(--grey);
 
-		a {
+		.main-links,
+		.terms-link {
+			position: relative;
 			color: var(--grey);
+			text-decoration: none;
+			transition: color 0.3s var(--easeOutExpo);
+
+			&::after {
+				content: '';
+				position: absolute;
+				left: 0;
+				bottom: -2px;
+				width: 100%;
+				height: 2px;
+				background-color: var(--primary);
+				transform: scaleX(0);
+				transform-origin: bottom right;
+				transition: transform 0.3s ease;
+			}
+
+			&:hover::after {
+				transform: scaleX(1);
+				transform-origin: bottom left;
+			}
+
+			&:hover {
+				color: var(--white);
+			}
 		}
 
 		.footer-container {

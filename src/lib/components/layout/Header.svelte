@@ -131,7 +131,32 @@
 				}
 
 				a {
+					position: relative;
 					color: var(--grey);
+					text-decoration: none;
+					transition: color 0.3s var(--easeOutExpo);
+
+					&::after {
+						content: '';
+						position: absolute;
+						left: 0;
+						bottom: -2px;
+						width: 100%;
+						height: 2px;
+						background-color: var(--primary);
+						transform: scaleX(0);
+						transform-origin: bottom right;
+						transition: transform 0.3s ease;
+					}
+
+					&:hover::after {
+						transform: scaleX(1);
+						transform-origin: bottom left;
+					}
+
+					&:hover {
+						color: var(--white);
+					}
 				}
 			}
 		}
@@ -170,6 +195,35 @@
 				gap: 16px;
 
 				padding: 1.5rem 1rem;
+
+				a {
+					position: relative;
+					color: var(--white);
+					text-decoration: none;
+					transition: color 0.3s var(--easeOutExpo);
+
+					&::after {
+						content: '';
+						position: absolute;
+						left: 0;
+						bottom: -2px;
+						width: 100%;
+						height: 2px;
+						background-color: var(--white);
+						transform: scaleX(0);
+						transform-origin: bottom right;
+						transition: transform 0.3s ease;
+					}
+
+					&:hover::after {
+						transform: scaleX(1);
+						transform-origin: bottom left;
+					}
+
+					&:hover {
+						color: var(--white);
+					}
+				}
 			}
 		}
 
