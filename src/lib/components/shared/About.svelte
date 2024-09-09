@@ -38,7 +38,6 @@
 	section {
 		display: flex;
 		flex-direction: column;
-		align-items: center;
 
 		@media (--lg) {
 			flex-direction: row;
@@ -61,12 +60,13 @@
 		}
 
 		.about-text {
-			max-width: 500px;
 			width: 100%;
 			opacity: 0;
 			transform: translateY(30px);
+			max-width: 800px;
 
 			@media (--lg) {
+				max-width: 500px;
 				width: 50%;
 			}
 		}

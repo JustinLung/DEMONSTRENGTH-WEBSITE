@@ -57,6 +57,10 @@
 
 <style lang="postcss">
 	section {
+		margin-block: 38px;
+		@media (--md) {
+			margin-block: 75px;
+		}
 		@media (--lg) {
 			margin-block: 150px;
 		}
