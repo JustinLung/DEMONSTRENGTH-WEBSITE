@@ -5,7 +5,7 @@
 	import Button from '../shared/Button.svelte';
 	import { links } from '$lib/utils/links';
 
-	const showButton = links.length > 0 && links[links.length - 1].title === 'Start coaching';
+	const showButton = links.length > 0 && links[links.length - 1].title === 'Login';
 
 	let isOpen = $state(false);
 
@@ -163,6 +163,7 @@
 
 		:global(.coaching-button) {
 			display: none;
+			text-align: center;
 
 			@media (--md) {
 				display: block;

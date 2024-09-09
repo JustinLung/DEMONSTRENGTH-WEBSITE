@@ -20,7 +20,7 @@ export const links = [
         title: 'Gallerij'
     },
     {
-        href: '/',
-        title: 'Start coaching'
+        href: 'https://demonstrengthcoaching.nl/',
+        title: 'Login'
     }
 ];
