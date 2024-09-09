@@ -1,10 +1,10 @@
 <script lang="ts">
-	const { title }: { title: string } = $props();
+	const { title, classes }: { title: string; classes?: string } = $props();
 </script>
 
-<div class="embla__slide">
+<article class="embla__slide {classes}">
 	{title}
-</div>
+</article>
 
 <style lang="postcss">
 	.embla__slide {

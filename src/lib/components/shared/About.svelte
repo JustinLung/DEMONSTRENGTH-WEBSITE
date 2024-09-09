@@ -1,10 +1,29 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+	import gsap from 'gsap';
+	import { easeOutExpo } from '$lib/utils/transition';
+
 	interface AboutInterface {
 		title: string;
 		description: string;
 	}
 
 	const { title, description }: AboutInterface = $props();
+
+	onMount(() => {
+		gsap.to('.about-image, .about-text', {
+			opacity: 1,
+			y: 0,
+			duration: 0.3,
+			ease: easeOutExpo,
+			scrollTrigger: {
+				trigger: '#about',
+				start: 'top 50%',
+				end: 'bottom',
+				toggleActions: 'play none none none'
+			}
+		});
+	});
 </script>
 
 <section class="container" id="about">
@@ -31,6 +50,8 @@
 		.about-image {
 			width: 100%;
 			margin-bottom: 20px;
+			opacity: 0;
+			transform: translateY(30px);
 
 			@media (--lg) {
 				max-width: 600px;
@@ -42,6 +63,8 @@
 		.about-text {
 			max-width: 500px;
 			width: 100%;
+			opacity: 0;
+			transform: translateY(30px);
 
 			@media (--lg) {
 				width: 50%;

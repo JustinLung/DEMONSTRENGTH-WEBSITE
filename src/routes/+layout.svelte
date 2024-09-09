@@ -4,6 +4,11 @@
 	import Lenis from '$lib/components/shared/Lenis.svelte';
 	import ViewTransition from '$lib/components/shared/ViewTransition.svelte';
 	import '../styles/all.css';
+
+	import { gsap } from 'gsap';
+	import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+
+	gsap.registerPlugin(ScrollTrigger);
 </script>
 
 <Lenis />

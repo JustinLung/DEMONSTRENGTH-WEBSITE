@@ -1,6 +1,9 @@
 <script lang="ts">
 	import EmblaCarousel, { type EmblaCarouselType } from 'embla-carousel';
 	import CarouselItem from './CarouselItem.svelte';
+	import gsap from 'gsap';
+	import { easeOutExpo } from '$lib/utils/transition';
+	import { onMount } from 'svelte';
 
 	interface CarouselInterface {
 		title: string;
@@ -37,8 +40,45 @@
 
 	const prev = () => embla && embla.scrollPrev();
 	const next = () => embla && embla.scrollNext();
+
+	onMount(() => {
+		gsap.to('.carousel-header', {
+			scrollTrigger: {
+				trigger: '.carousel',
+				start: 'top 30%',
+				end: 'bottom 20%',
+				toggleActions: 'play none none none'
+			},
+			opacity: 1,
+			y: 0,
+			duration: 0.3,
+			ease: easeOutExpo
+		});
+
+		gsap.fromTo(
+			'.carousel-item',
+			{
+				opacity: 0,
+				y: 30
+			},
+			{
+				opacity: 1,
+				y: 0,
+				duration: 0.6,
+				ease: easeOutExpo,
+				stagger: 0.15,
+				scrollTrigger: {
+					trigger: '.carousel',
+					start: 'top 25%',
+					end: 'bottom',
+					toggleActions: 'play none none none'
+				}
+			}
+		);
+	});
 </script>
 
+<!-- svelte-ignore css_unused_selector -->
 <section class="carousel container">
 	<div class="carousel-header">
 		<h2>{title}</h2>
@@ -96,7 +136,7 @@
 	<div class="embla" bind:this={emblaNode}>
 		<div class="embla__container">
 			{#each items as item}
-				<CarouselItem title={item.title} />
+				<CarouselItem title={item.title} classes="carousel-item" />
 			{/each}
 		</div>
 	</div>
@@ -111,6 +151,8 @@
 			display: flex;
 			justify-content: space-between;
 			margin-bottom: 29px;
+			opacity: 0;
+			transform: translateY(30px);
 
 			@media (--lg) {
 				margin-bottom: 59px;
@@ -139,7 +181,7 @@
 							height: 34px;
 						}
 						path {
-							strokg: var(--white);
+							stroke: var(--white);
 						}
 					}
 				}
@@ -168,5 +210,10 @@
 	.embla__container {
 		display: flex;
 		gap: 20px;
+	}
+
+	.carousel-item {
+		opacity: 0;
+		transform: translateY(30px);
 	}
 </style>

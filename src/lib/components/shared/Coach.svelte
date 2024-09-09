@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-
-	import { easeOutExpo } from '$lib/utils/transition';
+	import { gsap } from 'gsap';
 
 	interface CoachInterface {
 		title: string;
@@ -10,36 +9,30 @@
 		alt: string;
 		instagram: string;
 		tiktok: string;
+		classes?: string;
 	}
-	const { title, description, src, alt, instagram, tiktok }: CoachInterface = $props();
+	const { title, description, src, alt, instagram, tiktok, classes }: CoachInterface = $props();
 
 	let coachEl: HTMLElement;
 
-	onMount(async () => {
-		const { gsap } = await import('gsap');
-		const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-		gsap.registerPlugin(ScrollTrigger);
-
-		requestAnimationFrame(() => {
-			gsap.to(coachEl, {
-				scrollTrigger: {
-					trigger: coachEl,
-					start: 'top 40%',
-					end: 'bottom',
-					toggleActions: 'play none none',
-					markers: true
-				},
-				opacity: 1,
-				y: 0,
-				duration: 0.6,
-				ease: easeOutExpo
-			});
+	onMount(() => {
+		gsap.to(coachEl, {
+			opacity: 1,
+			y: 0,
+			duration: 0.3,
+			ease: 'expo.out',
+			scrollTrigger: {
+				trigger: coachEl,
+				start: 'top 50%',
+				end: 'bottom',
+				toggleActions: 'play none none none'
+			}
 		});
 	});
 </script>
 
-<article class="coach" bind:this={coachEl}>
-	<img {src} {alt} />
+<article class="coach {classes}" bind:this={coachEl}>
+	<img {src} {alt} draggable="false" />
 	<div class="content-container">
 		<h3>{title}</h3>
 		<p>{description}</p>
@@ -87,10 +80,12 @@
 					stroke-linecap="round"
 					stroke-linejoin="round"
 					class="icon icon-tabler icons-tabler-outline icon-tabler-brand-tiktok"
-					><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path
-						d="M21 7.917v4.034a9.948 9.948 0 0 1 -5 -1.951v4.5a6.5 6.5 0 1 1 -8 -6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917z"
-					/></svg
 				>
+					<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+					<path
+						d="M21 7.917v4.034a9.948 9.948 0 0 1 -5 -1.951v4.5a6.5 6.5 0 1 1 -8 -6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917z"
+					/>
+				</svg>
 			</a>
 		</div>
 	</div>
