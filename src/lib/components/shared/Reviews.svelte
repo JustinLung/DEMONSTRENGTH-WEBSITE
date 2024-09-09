@@ -13,7 +13,7 @@
 		gsap.to('.client-title', {
 			opacity: 1,
 			y: 0,
-			duration: 0.3,
+			duration: 0.5,
 			ease: easeOutExpo,
 			scrollTrigger: {
 				trigger: '#clients',

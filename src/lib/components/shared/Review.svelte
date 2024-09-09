@@ -10,7 +10,7 @@
 
 <article class={classes}>
 	<p>{review}</p>
-	<span>{name}</span>
+	<span>&mdash; {name}</span>
 </article>
 
 <style lang="postcss">

@@ -12,7 +12,7 @@
 		gsap.to('.coaches-title', {
 			opacity: 1,
 			y: 0,
-			duration: 0.3,
+			duration: 0.5,
 			ease: easeOutExpo,
 			scrollTrigger: {
 				trigger: '.coaches-title',

@@ -25,7 +25,7 @@
 
 <style lang="postcss">
 	.button {
-		font-size: 1rem;
+		font-size: 0.875rem;
 		font-weight: 500;
 
 		border: none;
@@ -35,6 +35,10 @@
 		border-radius: 2rem;
 		min-width: 130px;
 		min-height: 40px;
+
+		@media (--lg) {
+			font-size: 1rem;
+		}
 	}
 
 	.primary {

@@ -12,7 +12,7 @@
 	title="Grow your inner Demon strength."
 	description="Grow your inner demon met coaching van demon strength. Samen gaan wij onze PR’s door het dak heen!"
 />
-<Carousel title="Onze demons" {items} />
+<Carousel title="Highlights" {items} />
 <Coaches title="Onze Coaches" />
 <About
 	title="Samen helpen wij jou met je fitness doel."

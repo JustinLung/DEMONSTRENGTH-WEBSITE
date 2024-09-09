@@ -19,7 +19,7 @@
 		gsap.to(coachEl, {
 			opacity: 1,
 			y: 0,
-			duration: 0.3,
+			duration: 0.5,
 			ease: 'expo.out',
 			scrollTrigger: {
 				trigger: coachEl,
@@ -121,7 +121,7 @@
 			display: grid;
 			place-content: center;
 			max-width: 900px;
-			padding: 1rem;
+			padding-top: 1rem;
 
 			@media (--md) {
 				padding: 1.5rem 3rem;

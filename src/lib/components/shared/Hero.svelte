@@ -81,7 +81,7 @@
 
 		p {
 			max-width: 690px;
-			font-size: 1.125rem;
+			font-size: 1rem;
 			margin-inline: auto;
 			color: var(--grey);
 
@@ -94,7 +94,7 @@
 			display: flex;
 			justify-content: center;
 
-			margin-top: 16px;
+			margin-top: 24px;
 			gap: 8px;
 
 			@media (--md) {
