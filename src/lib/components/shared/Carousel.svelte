@@ -90,8 +90,8 @@
 </script>
 
 <!-- svelte-ignore css_unused_selector -->
-<section class="carousel container {isDragging ? 'is-dragging' : ''}">
-	<div class="carousel-header">
+<section class="carousel {isDragging ? 'is-dragging' : ''}">
+	<div class="carousel-header container">
 		<h2>{title}</h2>
 		<div class="button-container">
 			<button onclick={prev} disabled={!canPrev}>
@@ -145,7 +145,7 @@
 		</div>
 	</div>
 	<div class="embla" bind:this={emblaNode}>
-		<div class="embla__container">
+		<div class="container embla__container">
 			{#each items as item}
 				<CarouselItem title={item.title} classes="carousel-item" />
 			{/each}
@@ -157,7 +157,7 @@
 	.carousel {
 		position: relative;
 		z-index: 9;
-
+		margin-bottom: 40px;
 		cursor: grab;
 
 		&.is-dragging {
@@ -167,9 +167,10 @@
 		.carousel-header {
 			display: flex;
 			justify-content: space-between;
-			margin-bottom: 29px;
 			opacity: 0;
 			transform: translateY(30px);
+			padding-block: 0;
+			margin-bottom: 29px;
 
 			@media (--lg) {
 				margin-bottom: 59px;
@@ -227,6 +228,7 @@
 	.embla__container {
 		display: flex;
 		gap: 20px;
+		padding-block: 0;
 	}
 
 	.carousel-item {
