@@ -74,7 +74,7 @@
 			font-size: 2.5rem;
 
 			@media (--md) {
-				font-size: 4.875rem;
+				font-size: 4.8rem;
 				max-width: 948px;
 			}
 

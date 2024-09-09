@@ -10,8 +10,10 @@
 		instagram: string;
 		tiktok: string;
 		classes?: string;
+		last?: boolean;
 	}
-	const { title, description, src, alt, instagram, tiktok, classes }: CoachInterface = $props();
+	const { title, description, src, alt, last, instagram, tiktok, classes }: CoachInterface =
+		$props();
 
 	let coachEl: HTMLElement;
 
@@ -31,7 +33,7 @@
 	});
 </script>
 
-<article class="coach {classes}" bind:this={coachEl}>
+<article class="coach {last && 'last'} {classes}" bind:this={coachEl}>
 	<img {src} {alt} draggable="false" />
 	<div class="content-container">
 		<h3>{title}</h3>
@@ -102,18 +104,13 @@
 		opacity: 0;
 		transform: translateY(30px);
 
-		@media (--md) {
-			flex-direction: row;
-		}
-
 		img {
-			border-radius: 16px;
+			border-radius: 12px;
 			width: 100%;
 			object-fit: cover;
-
+			max-height: 400px;
 			@media (--md) {
-				width: 450px;
-				height: 400px;
+				max-height: 350px;
 			}
 		}
 
@@ -123,24 +120,12 @@
 			max-width: 900px;
 			padding-top: 1rem;
 
-			@media (--md) {
-				padding: 1rem;
-			}
-
-			@media (--lg) {
-				padding: 1.5rem 3rem;
-			}
-
 			h3 {
-				font-size: 1.25rem;
-				font-weight: 500;
-
-				@media (--md) {
-					font-size: 1.5rem;
-				}
+				font-size: 1rem;
+				font-size: 500;
 
 				@media (--lg) {
-					font-size: 2rem;
+					font-size: 1.5rem;
 				}
 			}
 
@@ -148,10 +133,6 @@
 				margin-top: 12px;
 				color: var(--grey);
 				font-size: 1rem;
-
-				@media (--lg) {
-					font-size: 1.25rem;
-				}
 			}
 
 			.social-container {
@@ -159,7 +140,24 @@
 				align-items: center;
 				gap: 8px;
 				margin-top: 16px;
+				font-size: 1rem;
 			}
+		}
+	}
+
+	.last {
+		grid-column: 1/-1;
+		flex-direction: column;
+
+		@media (--md) {
+			flex-direction: row;
+			gap: 30px;
+		}
+
+		@media (--xl) {
+			gap: 0;
+			flex-direction: column;
+			grid-column: unset;
 		}
 	}
 </style>

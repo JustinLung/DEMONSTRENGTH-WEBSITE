@@ -4,6 +4,10 @@ export const links = [
         title: 'Home'
     },
     {
+        href: '/#highlights',
+        title: 'Highlights'
+    },
+    {
         href: '/#coaches',
         title: 'Coaches'
     },
@@ -12,12 +16,8 @@ export const links = [
         title: 'About'
     },
     {
-        href: '/',
+        href: '/programs',
         title: 'Programs'
-    },
-    {
-        href: '/',
-        title: 'Gallerij'
     },
     {
         href: 'https://demonstrengthcoaching.nl/',

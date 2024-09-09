@@ -82,7 +82,7 @@
 </script>
 
 <!-- svelte-ignore css_unused_selector -->
-<section class="carousel">
+<section class="carousel" id="highlights">
 	<div class="carousel-header container">
 		<h2>{title}</h2>
 		<div class="button-container">

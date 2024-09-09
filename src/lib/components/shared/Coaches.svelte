@@ -27,7 +27,7 @@
 <section class="container coach-container" id="coaches">
 	<h2 class="coaches-title">{title}</h2>
 	<div>
-		{#each coaches as coach}
+		{#each coaches as coach, i}
 			<Coach
 				src={coach.src}
 				alt={coach.alt}
@@ -36,6 +36,7 @@
 				instagram={coach.instagram}
 				tiktok={coach.tiktok}
 				classes="coach"
+				last={i === coaches.length - 1}
 			/>
 		{/each}
 	</div>
@@ -60,7 +61,16 @@
 
 		div {
 			display: grid;
+			grid-template-columns: repeat(1, 1fr);
 			gap: 25px;
+
+			@media (--md) {
+				grid-template-columns: repeat(2, 1fr);
+			}
+
+			@media (--xl) {
+				grid-template-columns: repeat(3, 1fr);
+			}
 		}
 	}
 </style>

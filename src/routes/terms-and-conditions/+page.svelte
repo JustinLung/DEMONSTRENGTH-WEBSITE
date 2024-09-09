@@ -100,7 +100,7 @@
 		<h2>Contactinformatie</h2>
 		<p>
 			DemonStrength<br />
-			[Adres]<br />
+			De Dwarswal 25, 3905 MA Veenendaal<br />
 			[Telefoonnummer]<br />
 			[E-mailadres]<br />
 			[Website]

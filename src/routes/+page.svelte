@@ -6,8 +6,13 @@
 	import Coaches from '$lib/components/shared/Coaches.svelte';
 	import Reviews from '$lib/components/shared/Reviews.svelte';
 	import { reviews } from '$lib/utils/data/reviews';
+	// import MetaTags from '$lib/components/layout/MetaTags.svelte';
 </script>
 
+<!-- <MetaTags
+	pageTitle="Demonstrength - Homepage"
+	pageDescription="Grow your inner demon met coaching van demon strength. Samen gaan wij onze PR’s door het dak heen!"
+/> -->
 <Hero
 	title="Grow your inner Demon strength."
 	description="Grow your inner demon met coaching van demon strength. Samen gaan wij onze PR’s door het dak heen!"
