@@ -36,7 +36,7 @@
 		min-width: 130px;
 		min-height: 40px;
 
-		@media (--lg) {
+		@media (--md) {
 			font-size: 1rem;
 		}
 	}

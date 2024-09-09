@@ -124,6 +124,10 @@
 			padding-top: 1rem;
 
 			@media (--md) {
+				padding: 1rem;
+			}
+
+			@media (--lg) {
 				padding: 1.5rem 3rem;
 			}
 
