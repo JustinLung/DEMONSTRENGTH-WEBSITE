@@ -22,6 +22,8 @@
 		loop: false
 	};
 
+	let isDragging = $state(false);
+
 	$effect(() => {
 		embla = EmblaCarousel(emblaNode, options);
 
@@ -30,7 +32,16 @@
 			canNext = embla.canScrollNext();
 		};
 
+		const setDraggingCursor = (isDraggingState: boolean) => {
+			isDragging = isDraggingState;
+		};
+
 		embla.on('select', updateButtonStates);
+
+		embla.on('pointerDown', () => setDraggingCursor(true));
+		embla.on('pointerUp', () => setDraggingCursor(false));
+		embla.on('settle', () => setDraggingCursor(false));
+
 		updateButtonStates();
 
 		return () => {
@@ -79,7 +90,7 @@
 </script>
 
 <!-- svelte-ignore css_unused_selector -->
-<section class="carousel container">
+<section class="carousel container {isDragging ? 'is-dragging' : ''}">
 	<div class="carousel-header">
 		<h2>{title}</h2>
 		<div class="button-container">
@@ -146,6 +157,12 @@
 	.carousel {
 		position: relative;
 		z-index: 9;
+
+		cursor: grab;
+
+		&.is-dragging {
+			cursor: grabbing;
+		}
 
 		.carousel-header {
 			display: flex;
