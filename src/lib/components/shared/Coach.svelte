@@ -98,6 +98,7 @@
 		max-height: 1120px;
 		background-color: var(--tertiary);
 		padding: 1.5rem 1rem;
+		border-radius: 12px;
 		opacity: 0;
 		transform: translateY(30px);
 
