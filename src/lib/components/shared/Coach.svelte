@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { gsap } from 'gsap';
+	import { easeOutExpo } from '$lib/utils/transition';
 
 	interface CoachInterface {
 		title: string;
@@ -16,21 +17,6 @@
 		$props();
 
 	let coachEl: HTMLElement;
-
-	onMount(() => {
-		gsap.to(coachEl, {
-			opacity: 1,
-			y: 0,
-			duration: 0.5,
-			ease: 'expo.out',
-			scrollTrigger: {
-				trigger: coachEl,
-				start: 'top 50%',
-				end: 'bottom',
-				toggleActions: 'play none none none'
-			}
-		});
-	});
 </script>
 
 <article class="coach {last && 'last'} {classes}" bind:this={coachEl}>
@@ -101,8 +87,6 @@
 		background-color: var(--tertiary);
 		padding: 1.5rem 1rem;
 		border-radius: 12px;
-		opacity: 0;
-		transform: translateY(30px);
 
 		img {
 			border-radius: 12px;

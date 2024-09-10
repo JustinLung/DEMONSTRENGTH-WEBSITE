@@ -21,6 +21,27 @@
 				toggleActions: 'play none none none'
 			}
 		});
+
+		gsap.fromTo(
+			'.coach',
+			{
+				opacity: 0,
+				y: 30
+			},
+			{
+				opacity: 1,
+				y: 0,
+				duration: 0.6,
+				ease: easeOutExpo,
+				stagger: 0.15,
+				scrollTrigger: {
+					trigger: '.coach',
+					start: 'top 40%',
+					end: 'bottom',
+					toggleActions: 'play none none none'
+				}
+			}
+		);
 	});
 </script>
 
