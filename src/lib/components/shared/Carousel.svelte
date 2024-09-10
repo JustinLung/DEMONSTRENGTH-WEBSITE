@@ -4,6 +4,8 @@
 	import gsap from 'gsap';
 	import { easeOutExpo } from '$lib/utils/transition';
 	import { onMount } from 'svelte';
+	import NextArrow from '../icons/NextArrow.svelte';
+	import BackArrow from '../icons/BackArrow.svelte';
 
 	interface CarouselInterface {
 		title: string;
@@ -86,60 +88,16 @@
 	<div class="carousel-header container">
 		<h2>{title}</h2>
 		<div class="button-container">
-			<button onclick={prev} disabled={!canPrev}>
-				<svg
-					width="34"
-					height="20"
-					viewBox="0 0 34 20"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<path
-						d="M11 2.66666L3.66667 9.99999L11 17.3333"
-						stroke="#FAFAFA"
-						stroke-width="3.66667"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-					/>
-					<path
-						d="M31.1667 10L3.66675 10"
-						stroke="#FAFAFA"
-						stroke-width="3.66667"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-					/>
-				</svg>
-			</button>
+			<button onclick={prev} disabled={!canPrev}> <BackArrow classes="arrow" /></button>
 			<button onclick={next} disabled={!canNext}>
-				<svg
-					width="34"
-					height="20"
-					viewBox="0 0 34 20"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<path
-						d="M23 2.66666L30.3333 9.99999L23 17.3333"
-						stroke="#FAFAFA"
-						stroke-width="3.66667"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-					/>
-					<path
-						d="M2.83325 10L30.3333 10"
-						stroke="#FAFAFA"
-						stroke-width="3.66667"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-					/>
-				</svg>
+				<NextArrow classes="arrow" />
 			</button>
 		</div>
 	</div>
 	<div class="embla" bind:this={emblaNode}>
 		<div class="container embla__container">
 			{#each items as item}
-				<CarouselItem title={item.title} classes="carousel-item" />
+				<CarouselItem tag={item.tag} classes="carousel-item" />
 			{/each}
 		</div>
 	</div>
@@ -177,7 +135,7 @@
 						color: var(--grey);
 					}
 
-					svg {
+					.arrow {
 						width: 24px;
 						height: 24px;
 
