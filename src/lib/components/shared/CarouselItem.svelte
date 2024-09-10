@@ -11,10 +11,10 @@
 		classes
 	}: {
 		tag: string;
-		videoSrc: string;
+		videoSrc?: string;
 		classes?: string;
-		thumbnailSrc: string;
-		thumbnailAlt: string;
+		thumbnailSrc?: string;
+		thumbnailAlt?: string;
 	} = $props();
 
 	let isOpen = $state(false);

@@ -68,6 +68,7 @@
 			color: var(--grey);
 			text-decoration: none;
 			transition: color 0.3s var(--easeOutExpo);
+			width: fit-content;
 
 			&::after {
 				content: '';
