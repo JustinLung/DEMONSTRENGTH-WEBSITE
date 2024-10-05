@@ -52,7 +52,7 @@
 	<h1 class="stagger">{title}</h1>
 	<p class="stagger">{description}</p>
 	<div class="button-container stagger">
-		<Button href="/coaching" primary classes="stagger">Start coaching</Button>
+		<Button href="https://demonstrengthcoaching.nl/" primary classes="stagger">Programs</Button>
 		<Button href="/#about" classes="stagger">Over ons</Button>
 	</div>
 </section>
