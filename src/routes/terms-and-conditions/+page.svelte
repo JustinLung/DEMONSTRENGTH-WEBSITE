@@ -6,7 +6,7 @@
 	<ul>
 		<li>
 			<strong>DemonStrength:</strong> De onderneming die powerliftingdiensten aanbiedt, geregistreerd
-			op [adres van het bedrijf].
+			op De Dwarswal 25, 3905 MA Veenendaal.
 		</li>
 		<li>
 			<strong>Klant:</strong> De persoon of entiteit die gebruik maakt van de diensten van DemonStrength.

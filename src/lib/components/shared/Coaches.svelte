@@ -3,10 +3,10 @@
 	import { gsap } from 'gsap';
 
 	import Coach from './Coach.svelte';
-	import { coaches } from '$lib/utils/data/coach';
+	// import { coaches } from '$lib/utils/data/coach';
 	import { easeOutExpo } from '$lib/utils/transition';
 
-	const { title }: { title: string } = $props();
+	const { title, coaches }: { title: string; coaches: any[] } = $props();
 
 	onMount(() => {
 		gsap.to('.coaches-title', {
@@ -50,8 +50,8 @@
 	<div>
 		{#each coaches as coach, i}
 			<Coach
-				src={coach.src}
-				alt={coach.alt}
+				src={coach.image.url}
+				alt={coach.image.alt}
 				title={coach.title}
 				description={coach.description}
 				instagram={coach.instagram}
