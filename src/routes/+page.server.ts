@@ -15,11 +15,7 @@ export async function load() {
             reviewTitle
             review {
                 name
-                review {
-                    value
-                    links
-                    blocks
-                }
+                review
             }
             coachTitle
             coach {
