@@ -16,6 +16,10 @@ export const links = [
         title: 'About'
     },
     {
+        href: "/#reviews",
+        title: "Reviews",
+    },
+    {
         href: 'https://demonstrengthcoaching.nl/',
         title: 'Login'
     }

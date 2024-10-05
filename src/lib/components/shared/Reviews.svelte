@@ -16,7 +16,7 @@
 			duration: 0.5,
 			ease: easeOutExpo,
 			scrollTrigger: {
-				trigger: '#clients',
+				trigger: '#reviews',
 				start: 'top 30%',
 				end: 'bottom',
 				toggleActions: 'play none none none'
@@ -36,7 +36,7 @@
 				ease: easeOutExpo,
 				stagger: 0.15,
 				scrollTrigger: {
-					trigger: '#clients',
+					trigger: '#reviews',
 					start: 'top 25%',
 					end: 'bottom',
 					toggleActions: 'play none none none'
@@ -46,7 +46,7 @@
 	});
 </script>
 
-<section class="container" id="clients">
+<section class="container" id="reviews">
 	<h2 class="client-title">{title}</h2>
 	<div>
 		{#each reviews as review}
