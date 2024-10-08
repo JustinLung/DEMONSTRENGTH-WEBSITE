@@ -28,6 +28,14 @@ export async function load() {
                     alt
                 }
             }
+            highlightTitle
+            highlights {
+                tag
+                image {
+                    alt
+                    url
+                }
+            }
         }
     }
     `;

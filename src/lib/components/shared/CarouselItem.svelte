@@ -8,13 +8,15 @@
 		videoSrc = 'https://www.example.com/video.mp4',
 		thumbnailSrc = '/images/placeholder.png',
 		thumbnailAlt = '/images/placeholder.png',
-		classes
+		classes,
+		mediaType = 'video' // Possible values: 'video' or 'image'
 	}: {
 		tag: string;
 		videoSrc?: string;
 		classes?: string;
 		thumbnailSrc?: string;
 		thumbnailAlt?: string;
+		mediaType?: 'video' | 'image';
 	} = $props();
 
 	let isOpen = $state(false);
@@ -59,11 +61,14 @@
 	>
 		<button class="close-button" onclick={closeModal} type="button">Close </button>
 		<div class="modal-content" transition:fly={{ y: 200, duration: 400, delay: 0.3 }}>
-			<!-- svelte-ignore a11y_media_has_caption -->
-			<video controls>
-				<source src={videoSrc} type="video/mp4" />
-				Your browser does not support the video tag.
-			</video>
+			{#if mediaType === 'video'}
+				<!-- svelte-ignore a11y_media_has_caption -->
+				<video controls>
+					<source src={videoSrc} type="video/mp4" />
+				</video>
+			{:else if mediaType === 'image'}
+				<img src={thumbnailSrc} alt={thumbnailAlt} class="modal-image" />
+			{/if}
 		</div>
 	</div>
 {/if}
@@ -137,6 +142,11 @@
 	}
 
 	video {
+		width: 100%;
+		height: auto;
+	}
+
+	.modal-image {
 		width: 100%;
 		height: auto;
 	}

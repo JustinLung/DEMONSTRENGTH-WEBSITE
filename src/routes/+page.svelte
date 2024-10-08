@@ -14,7 +14,7 @@
 </script>
 
 <Hero title={homepageData?.hero?.title} description={homepageData?.hero?.description} />
-<Carousel title="Highlights" {items} />
+<Carousel title={homepageData?.highlightTitle} items={homepageData?.highlights} />
 <Coaches title={homepageData?.coachTitle} coaches={homepageData.coach} />
 <About title={homepageData?.about?.title} description={homepageData?.about.description} />
 <Reviews title={homepageData?.reviewTitle} reviews={homepageData?.review} />
