@@ -3,7 +3,6 @@
 	import { gsap } from 'gsap';
 
 	import Coach from './Coach.svelte';
-	// import { coaches } from '$lib/utils/data/coach';
 	import { easeOutExpo } from '$lib/utils/transition';
 
 	const { title, coaches }: { title: string; coaches: any[] } = $props();

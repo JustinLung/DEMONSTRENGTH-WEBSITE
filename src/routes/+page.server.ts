@@ -8,36 +8,35 @@ export async function load() {
                 title
                 description
             }
-            about {
+        about {
+            title
+            description
+            aboutImage {
+                url
                 title
-                description
-            }
-            reviewTitle
-            review {
-                name
-                review
-            }
-            coachTitle
-            coach {
-                title
-                tiktok
-                instagram
-                description
-                image {
-                    url
-                    alt
-                }
-            }
-            highlightTitle
-            highlights {
-                tag
-                image {
-                    alt
-                    url
-                }
+                alt
             }
         }
+        reviewTitle
+        review {
+            name
+            review
+        }
+        coachTitle
+        coach {
+            title
+            tiktok
+            instagram
+            description
+            image {
+                url
+                title
+                alt
+            }
+        }
+        highlightTitle
     }
+}
     `;
     const data = await client({ query, fetch: fetch });
     return {
