@@ -13,6 +13,7 @@
 	}
 
 	const { title, items }: CarouselInterface = $props();
+	console.log(items);
 
 	let canPrev = $state(false);
 	let canNext = $state(false);
@@ -97,7 +98,16 @@
 	<div class="embla" bind:this={emblaNode}>
 		<div class="container embla__container">
 			{#each items as item}
-				<CarouselItem tag={item.tag} classes="carousel-item" />
+				<CarouselItem
+					tag={item.tag}
+					videoSrc={item.media.mimeType === 'video/mp4' ? item.media.url : undefined}
+					thumbnailSrc={item.media.mimeType.startsWith('image/')
+						? item.media.url
+						: item?.media?.video?.thumbnailUrl}
+					thumbnailAlt={item.media.alt || 'Carousel item thumbnail'}
+					mediaType={item.media.mimeType.startsWith('video') ? 'video' : 'image'}
+					classes="carousel-item"
+				/>
 			{/each}
 		</div>
 	</div>
