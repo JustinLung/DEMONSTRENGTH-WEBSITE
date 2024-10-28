@@ -5,9 +5,9 @@
 
 	const {
 		tag = 'Powerlifting',
-		videoSrc = 'https://www.example.com/video.mp4',
-		thumbnailSrc = '/images/placeholder.png',
-		thumbnailAlt = '/images/placeholder.png',
+		videoSrc,
+		thumbnailSrc,
+		thumbnailAlt,
 		classes,
 		mediaType = 'video' // Possible values: 'video' or 'image'
 	}: {
@@ -143,7 +143,7 @@
 
 	video {
 		width: 100%;
-		height: auto;
+		max-height: 700px;
 	}
 
 	.modal-image {

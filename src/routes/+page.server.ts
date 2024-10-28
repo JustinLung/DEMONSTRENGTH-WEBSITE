@@ -35,6 +35,19 @@ export async function load() {
             }
         }
         highlightTitle
+        highlights {
+            tag
+            media {
+                url
+                video {
+                    thumbnailUrl
+                    mp4Url
+                }
+                url
+                alt
+                mimeType
+            }
+        }
     }
 }
     `;
