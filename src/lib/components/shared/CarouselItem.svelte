@@ -63,7 +63,7 @@
 		<div class="modal-content" transition:fly={{ y: 200, duration: 400, delay: 0.3 }}>
 			{#if mediaType === 'video'}
 				<!-- svelte-ignore a11y_media_has_caption -->
-				<video controls poster={thumbnailSrc}>
+				<video controls poster={thumbnailSrc} onclick={(event) => event.stopPropagation()}>
 					<source src={videoSrc} type="video/mp4" />
 				</video>
 			{:else if mediaType === 'image'}
@@ -144,6 +144,7 @@
 	video {
 		width: 100%;
 		max-height: 700px;
+		pointer-events: all;
 	}
 
 	.modal-image {
