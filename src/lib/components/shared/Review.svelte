@@ -51,7 +51,7 @@
 <style lang="postcss">
 	article {
 		display: flex;
-		flex: 0 0 min(100%, 305px);
+		flex: 0 0 min(100%, 340px);
 		flex-direction: column;
 		justify-content: space-between;
 		min-height: 135px;
