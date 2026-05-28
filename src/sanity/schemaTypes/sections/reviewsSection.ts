@@ -36,6 +36,12 @@ export const reviewsSection = defineType({
 							type: 'text',
 							rows: 4,
 							validation: (Rule) => Rule.required()
+						}),
+						defineField({
+							name: 'image',
+							title: 'Photo',
+							description: 'Optional customer photo, or one photo with the coach.',
+							type: 'imageWithAlt'
 						})
 					]
 				}

@@ -47,7 +47,7 @@
 		display: flex;
 		flex-direction: column;
 
-		@media (--lg) {
+		@media (--xl) {
 			flex-direction: row;
 			align-items: center;
 			justify-content: center;
@@ -60,9 +60,9 @@
 			opacity: 0;
 			transform: translateY(30px);
 
-			@media (--lg) {
-				max-width: 600px;
-				width: 50%;
+			@media (--xl) {
+				max-width: 800px;
+				width: 100%;
 				margin-bottom: 0;
 			}
 		}
@@ -73,7 +73,7 @@
 			transform: translateY(30px);
 			max-width: 800px;
 
-			@media (--lg) {
+			@media (--xl) {
 				max-width: 500px;
 				width: 50%;
 			}
@@ -85,7 +85,7 @@
 			font-weight: 500;
 			max-width: 380px;
 
-			@media (--lg) {
+			@media (--xl) {
 				font-size: 2rem;
 			}
 		}
@@ -94,7 +94,7 @@
 			margin-top: 20px;
 			color: var(--grey);
 
-			@media (--lg) {
+			@media (--xl) {
 				font-size: 1rem;
 			}
 		}

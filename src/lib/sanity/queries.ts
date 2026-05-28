@@ -42,7 +42,13 @@ export const homePageQuery = `*[_type == "homePage"][0]{
 	"reviewSubtitle": reviews.subtitle,
 	"review": reviews.reviews[]{
 		name,
-		review
+		review,
+		"image": select(
+			defined(image.asset) => {
+				"src": image.asset->url,
+				"alt": image.alt
+			}
+		)
 	},
 	cta
 }`;

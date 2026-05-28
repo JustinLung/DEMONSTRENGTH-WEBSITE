@@ -1,17 +1,40 @@
 <script lang="ts">
+	type ReviewImage = {
+		src: string;
+		alt?: string;
+	};
+
 	interface ReviewInterface {
 		review: string;
 		name: string;
+		image?: ReviewImage | null;
 		classes?: string;
 		onOpen: () => void;
 		readMoreLabel?: string;
 	}
 
-	const { review, name, classes, onOpen, readMoreLabel = 'Lees meer' }: ReviewInterface = $props();
+	const {
+		review,
+		name,
+		image,
+		classes,
+		onOpen,
+		readMoreLabel = 'Lees meer'
+	}: ReviewInterface = $props();
 </script>
 
 <article class={classes}>
-	<p>{review}</p>
+	<div>
+		{#if image?.src}
+			<img
+				src={image.src}
+				alt={image.alt ?? `Foto van ${name}`}
+				class="review-image"
+				loading="lazy"
+			/>
+		{/if}
+		<p>{review}</p>
+	</div>
 	<div class="card-footer">
 		<span>&mdash; {name}</span>
 		<button
@@ -35,6 +58,14 @@
 		padding: 20px;
 		background-color: var(--tertiary);
 		border-radius: 8px;
+
+		.review-image {
+			width: 100%;
+			aspect-ratio: 4 / 3;
+			margin-bottom: 18px;
+			border-radius: 6px;
+			object-fit: cover;
+		}
 
 		p {
 			display: -webkit-box;

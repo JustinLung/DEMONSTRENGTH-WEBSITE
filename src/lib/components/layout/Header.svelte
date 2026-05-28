@@ -121,6 +121,18 @@
 		justify-content: space-between;
 		align-items: center;
 
+		&::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 50%;
+			z-index: -1;
+			width: 100vw;
+			transform: translateX(-50%);
+			background-color: rgb(0 0 0 / 0.75);
+		}
+
 		.main-title {
 			position: relative;
 			font-weight: 500;
@@ -172,6 +184,7 @@
 		:global(.cta-button) {
 			display: none;
 			text-align: center;
+			margin-top: 0;
 
 			@media (--md) {
 				display: block;

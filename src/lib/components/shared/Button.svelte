@@ -35,6 +35,7 @@
 		border-radius: 2rem;
 		min-width: 130px;
 		min-height: 40px;
+		text-align: center;
 
 		@media (--md) {
 			font-size: 1rem;

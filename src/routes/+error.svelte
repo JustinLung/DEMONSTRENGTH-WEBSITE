@@ -5,7 +5,7 @@
 <section class="container">
 	<h1>404</h1>
 	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Return to the placeholder home page.
+		De pagina die je zoekt bestaat niet. Ga terug naar de homepagina.
 	</p>
 	<Button href="/" primary>Home</Button>
 </section>

@@ -40,6 +40,7 @@
 
 	let canPrev = $state(false);
 	let canNext = $state(false);
+	const canScroll = $derived(canPrev || canNext);
 
 	let embla: EmblaCarouselType;
 	let emblaNode: HTMLDivElement;
@@ -49,6 +50,8 @@
 	};
 
 	$effect(() => {
+		if (!emblaNode) return;
+
 		embla = EmblaCarousel(emblaNode, options);
 
 		const updateButtonStates = () => {
@@ -57,6 +60,7 @@
 		};
 
 		embla.on('select', updateButtonStates);
+		embla.on('reInit', updateButtonStates);
 
 		updateButtonStates();
 
@@ -108,14 +112,16 @@
 <section class="carousel" id="highlights">
 	<div class="carousel-header container">
 		<h2>{title}</h2>
-		<div class="button-container">
-			<button onclick={prev} disabled={!canPrev} aria-label={previousLabel} type="button">
-				<BackArrow classes="arrow" /></button
-			>
-			<button onclick={next} disabled={!canNext} aria-label={nextLabel} type="button">
-				<NextArrow classes="arrow" />
-			</button>
-		</div>
+		{#if canScroll}
+			<div class="button-container">
+				<button onclick={prev} disabled={!canPrev} aria-label={previousLabel} type="button">
+					<BackArrow classes="arrow" /></button
+				>
+				<button onclick={next} disabled={!canNext} aria-label={nextLabel} type="button">
+					<NextArrow classes="arrow" />
+				</button>
+			</div>
+		{/if}
 	</div>
 	<div class="embla" bind:this={emblaNode}>
 		<div class="container embla__container">

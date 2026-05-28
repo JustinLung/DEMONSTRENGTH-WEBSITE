@@ -14,6 +14,10 @@
 	type ReviewItem = {
 		name: string;
 		review: string;
+		image?: {
+			src: string;
+			alt?: string;
+		} | null;
 	};
 
 	interface ReviewsInterface {
@@ -38,6 +42,7 @@
 
 	let canPrev = $state(false);
 	let canNext = $state(false);
+	const canScroll = $derived(canPrev || canNext);
 	let emblaNode: HTMLDivElement;
 	let embla: EmblaCarouselType | undefined;
 	let selectedReview = $state<ReviewItem | null>(null);
@@ -68,7 +73,8 @@
 	async function openReview(review: ReviewItem) {
 		if (!browser) return;
 
-		previouslyFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+		previouslyFocusedElement =
+			document.activeElement instanceof HTMLElement ? document.activeElement : null;
 		selectedReview = review;
 		document.body.style.overflow = 'hidden';
 		await tick();
@@ -179,7 +185,12 @@
 
 <svelte:window onkeydown={handleKeydown} />
 
-<section class="reviews container" id="reviews" aria-labelledby={titleId} aria-describedby={subtitleId}>
+<section
+	class="reviews container"
+	id="reviews"
+	aria-labelledby={titleId}
+	aria-describedby={subtitleId}
+>
 	<div class="reviews-header">
 		<div>
 			<h2 id={titleId}>{title}</h2>
@@ -188,14 +199,16 @@
 			{/if}
 		</div>
 
-		<div class="button-container" aria-label="Testimonial carousel controls">
-			<button type="button" onclick={prev} disabled={!canPrev} aria-label={previousLabel}>
-				<BackArrow classes="arrow" />
-			</button>
-			<button type="button" onclick={next} disabled={!canNext} aria-label={nextLabel}>
-				<NextArrow classes="arrow" />
-			</button>
-		</div>
+		{#if canScroll}
+			<div class="button-container" aria-label="Testimonial carousel controls">
+				<button type="button" onclick={prev} disabled={!canPrev} aria-label={previousLabel}>
+					<BackArrow classes="arrow" />
+				</button>
+				<button type="button" onclick={next} disabled={!canNext} aria-label={nextLabel}>
+					<NextArrow classes="arrow" />
+				</button>
+			</div>
+		{/if}
 	</div>
 
 	<div class="embla" bind:this={emblaNode}>
@@ -204,6 +217,7 @@
 				<Review
 					name={review.name}
 					review={review.review}
+					image={review.image}
 					classes="review-card"
 					onOpen={() => openReview(review)}
 					{readMoreLabel}
@@ -242,6 +256,13 @@
 			transition:scale={{ duration: 320, start: 0.92, opacity: 0 }}
 		>
 			<h2 id={dialogTitleId} class="visually-hidden">Testimonial from {selectedReview.name}</h2>
+			{#if selectedReview.image?.src}
+				<img
+					src={selectedReview.image.src}
+					alt={selectedReview.image.alt ?? `Foto van ${selectedReview.name}`}
+					class="testimonial-image"
+				/>
+			{/if}
 			<blockquote id={dialogDescriptionId}>
 				<p>"{selectedReview.review}"</p>
 				<footer>&mdash; {selectedReview.name}</footer>
@@ -369,6 +390,14 @@
 		box-shadow: 0 24px 80px rgb(0 0 0 / 0.5);
 		color: var(--white);
 		padding: 44px 36px 34px;
+
+		.testimonial-image {
+			width: 100%;
+			aspect-ratio: 16 / 10;
+			margin-bottom: 28px;
+			border-radius: 8px;
+			object-fit: cover;
+		}
 
 		&:focus {
 			outline: none;
