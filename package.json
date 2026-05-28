@@ -5,14 +5,14 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
-		"postbuild": "node ./scripts/index.mjs",
 		"preview": "vite preview",
+		"studio": "sanity dev",
+		"studio:build": "sanity build",
+		"studio:deploy": "sanity deploy",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write .",
-		"generate-graphql": "graphql-codegen",
-		"watch-graphql": "graphql-codegen --watch"
+		"format": "prettier --write ."
 	},
 	"devDependencies": {
 		"@csstools/postcss-global-data": "^3.0.0",
@@ -30,6 +30,7 @@
 		"postcss-preset-env": "^10.0.2",
 		"prettier": "^3.1.1",
 		"prettier-plugin-svelte": "^3.1.2",
+		"sanity": "^3.99.0",
 		"svelte": "^5.0.0-next.1",
 		"svelte-check": "^3.6.0",
 		"svelte-preprocess": "^6.0.2",
@@ -39,17 +40,14 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@graphql-codegen/cli": "^5.0.2",
-		"@graphql-codegen/introspection": "^4.0.3",
-		"@graphql-codegen/schema-ast": "^4.1.0",
-		"@graphql-codegen/typescript": "^4.0.9",
-		"@graphql-codegen/typescript-graphql-request": "^6.2.0",
+		"@sanity/client": "^7.22.1",
+		"@sanity/image-url": "^2.1.1",
 		"@studio-freight/lenis": "^1.0.42",
 		"embla-carousel": "^8.2.1",
-		"graphql": "^16.9.0",
-		"graphql-codegen-plugin-typescript-swr": "^0.8.5",
-		"graphql-request": "^6.1.0",
 		"gsap": "^3.12.5",
+		"react": "^19.2.6",
+		"react-dom": "^19.2.6",
+		"styled-components": "^6.4.2",
 		"svelte-portal": "^2.2.1"
 	}
 }

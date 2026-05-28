@@ -7,13 +7,36 @@
 	import NextArrow from '../icons/NextArrow.svelte';
 	import BackArrow from '../icons/BackArrow.svelte';
 
+	type CarouselMedia = {
+		url: string;
+		alt?: string;
+		mimeType: string;
+		video?: {
+			thumbnailUrl?: string;
+			mp4Url?: string;
+		};
+	};
+
+	type CarouselItemData = {
+		tag: string;
+		media: CarouselMedia;
+	};
+
 	interface CarouselInterface {
 		title: string;
-		items: any;
+		items: CarouselItemData[];
+		closeLabel?: string;
+		previousLabel?: string;
+		nextLabel?: string;
 	}
 
-	const { title, items }: CarouselInterface = $props();
-	console.log(items);
+	const {
+		title,
+		items,
+		closeLabel = 'Close',
+		previousLabel = 'Previous highlights',
+		nextLabel = 'Next highlights'
+	}: CarouselInterface = $props();
 
 	let canPrev = $state(false);
 	let canNext = $state(false);
@@ -24,8 +47,6 @@
 	const options = {
 		loop: false
 	};
-
-	let isDragging = $state(false);
 
 	$effect(() => {
 		embla = EmblaCarousel(emblaNode, options);
@@ -84,13 +105,14 @@
 	});
 </script>
 
-<!-- svelte-ignore css_unused_selector -->
 <section class="carousel" id="highlights">
 	<div class="carousel-header container">
 		<h2>{title}</h2>
 		<div class="button-container">
-			<button onclick={prev} disabled={!canPrev}> <BackArrow classes="arrow" /></button>
-			<button onclick={next} disabled={!canNext}>
+			<button onclick={prev} disabled={!canPrev} aria-label={previousLabel} type="button">
+				<BackArrow classes="arrow" /></button
+			>
+			<button onclick={next} disabled={!canNext} aria-label={nextLabel} type="button">
 				<NextArrow classes="arrow" />
 			</button>
 		</div>
@@ -107,6 +129,7 @@
 					thumbnailAlt={item.media.alt || 'Carousel item thumbnail'}
 					mediaType={item.media.mimeType.startsWith('video') ? 'video' : 'image'}
 					classes="carousel-item"
+					{closeLabel}
 				/>
 			{/each}
 		</div>
@@ -117,7 +140,6 @@
 	.carousel {
 		position: relative;
 		z-index: 9;
-		margin-bottom: 40px;
 
 		.carousel-header {
 			display: flex;

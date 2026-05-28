@@ -4,12 +4,13 @@
 	import VideoIcon from '../icons/VideoIcon.svelte';
 
 	const {
-		tag = 'Powerlifting',
+		tag = 'Placeholder',
 		videoSrc,
 		thumbnailSrc,
 		thumbnailAlt,
 		classes,
-		mediaType = 'video' // Possible values: 'video' or 'image'
+		mediaType = 'video',
+		closeLabel = 'Close'
 	}: {
 		tag: string;
 		videoSrc?: string;
@@ -17,6 +18,7 @@
 		thumbnailSrc?: string;
 		thumbnailAlt?: string;
 		mediaType?: 'video' | 'image';
+		closeLabel?: string;
 	} = $props();
 
 	let isOpen = $state(false);
@@ -27,7 +29,6 @@
 
 	const closeModal = () => {
 		isOpen = false;
-		console.log('close');
 	};
 </script>
 
@@ -59,7 +60,7 @@
 		use:portal={'body'}
 		transition:scale={{ duration: 400 }}
 	>
-		<button class="close-button" onclick={closeModal} type="button">Close </button>
+		<button class="close-button" onclick={closeModal} type="button">{closeLabel}</button>
 		<div class="modal-content" transition:fly={{ y: 200, duration: 400, delay: 0.3 }}>
 			{#if mediaType === 'video'}
 				<!-- svelte-ignore a11y_media_has_caption -->

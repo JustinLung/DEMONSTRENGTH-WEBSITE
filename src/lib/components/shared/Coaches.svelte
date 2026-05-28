@@ -5,7 +5,19 @@
 	import Coach from './Coach.svelte';
 	import { easeOutExpo } from '$lib/utils/transition';
 
-	const { title, coaches }: { title: string; coaches: any[] } = $props();
+	type CoachData = {
+		title: string;
+		description: string;
+		instagram: string;
+		tiktok: string;
+		image: {
+			url: string;
+			alt?: string;
+		};
+	};
+
+	const { title, coaches, socialLabel = 'Socials:' }: { title: string; coaches: CoachData[]; socialLabel?: string } =
+		$props();
 
 	onMount(() => {
 		gsap.to('.coaches-title', {
@@ -50,11 +62,12 @@
 		{#each coaches as coach, i}
 			<Coach
 				src={coach.image.url}
-				alt={coach.image.alt}
-				title={coach.title}
+				alt={coach.image.alt as string}
+ 				title={coach.title}
 				description={coach.description}
 				instagram={coach.instagram}
 				tiktok={coach.tiktok}
+				{socialLabel}
 				classes="coach"
 				last={i === coaches.length - 1}
 			/>

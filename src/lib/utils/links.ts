@@ -1,26 +1,26 @@
 export const links = [
-    {
-        href: '/',
-        title: 'Home'
-    },
-    {
-        href: '/#highlights',
-        title: 'Highlights'
-    },
-    {
-        href: '/#coaches',
-        title: 'Coaches'
-    },
-    {
-        href: '/#about',
-        title: 'About'
-    },
-    {
-        href: "/#reviews",
-        title: "Reviews",
-    },
-    {
-        href: 'https://demonstrengthcoaching.nl/',
-        title: 'Login'
-    }
+	{
+		href: '/',
+		title: 'Placeholder'
+	},
+	{
+		href: '/#highlights',
+		title: 'Placeholder'
+	},
+	{
+		href: '/#coaches',
+		title: 'Placeholder'
+	},
+	{
+		href: '/about',
+		title: 'Placeholder'
+	},
+	{
+		href: '/#reviews',
+		title: 'Placeholder'
+	},
+	{
+		href: '#',
+		title: 'Placeholder CTA'
+	}
 ];

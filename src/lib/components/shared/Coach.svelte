@@ -10,11 +10,21 @@
 		alt: string;
 		instagram: string;
 		tiktok: string;
+		socialLabel?: string;
 		classes?: string;
 		last?: boolean;
 	}
-	const { title, description, src, alt, last, instagram, tiktok, classes }: CoachInterface =
-		$props();
+	const {
+		title,
+		description,
+		src,
+		alt,
+		last,
+		instagram,
+		tiktok,
+		socialLabel = 'Socials:',
+		classes
+	}: CoachInterface = $props();
 
 	let coachEl: HTMLElement;
 </script>
@@ -25,7 +35,7 @@
 		<h3>{title}</h3>
 		<p>{description}</p>
 		<div class="social-container">
-			<span>Socials:</span>
+			<span>{socialLabel}</span>
 			<a href={instagram} target="_blank" rel="noopener noreferrer">
 				<svg
 					width="24"

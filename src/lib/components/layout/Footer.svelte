@@ -1,22 +1,49 @@
 <script lang="ts">
-	import { links } from '$lib/utils/links';
+	type FooterLink = {
+		href: string;
+		title: string;
+	};
 
-	const trimmedLinks = links.slice(1, -1);
+	type FooterBrand = {
+		title: string;
+		href: string;
+	};
+
+	type FooterSocialLink = {
+		href: string;
+		label: string;
+	};
+
+	interface FooterProps {
+		brand?: FooterBrand;
+		socialLink?: FooterSocialLink;
+		copyright?: string;
+		legalLink?: FooterLink;
+	}
+
+	const {
+		brand = { title: 'placeholder.', href: '/' },
+		socialLink = { href: '/', label: 'Placeholder social link' },
+		copyright = 'All rights Reserved.',
+		legalLink = { href: '/terms-and-conditions', title: 'Terms & Conditions' }
+	}: FooterProps = $props();
+
+	const mainLinks: FooterLink[] = [
+		{ href: '/#highlights', title: 'Highlight' },
+		{ href: '/about', title: 'About' },
+		{ href: '/#reviews', title: 'Reviews' }
+	];
 </script>
 
 <footer>
 	<div class="container footer-container">
-		<a href="/" class="main-title"> demonstrength. </a>
+		<a href={brand.href} class="main-title"> {brand.title} </a>
 		<nav>
-			{#each trimmedLinks as link}
+			{#each mainLinks as link}
 				<a href={link.href} class="main-links">{link.title}</a>
 			{/each}
 		</nav>
-		<a
-			href="https://www.instagram.com/demonstrengthcoaching/"
-			target="_blank"
-			rel="noopener noreferrer"
-		>
+		<a href={socialLink.href} aria-label={socialLink.label}>
 			<svg
 				width="24"
 				height="24"
@@ -51,21 +78,21 @@
 	<hr />
 	<div class="container footer-outer-container">
 		<span>
-			&copy; {new Date().getFullYear()} &#183; All rights Reserved.
+			&copy; {new Date().getFullYear()} &#183; {copyright}
 		</span>
-		<a href="/terms-and-conditions" class="terms-link">Terms & Conditions</a>
+		<a href={legalLink.href} class="terms-link">{legalLink.title}</a>
 	</div>
 </footer>
 
 <style lang="postcss">
 	footer {
-		background-color: var(--tertiary);
-		color: var(--grey);
+		background-color: var(--black);
+		color: var(--white);
 
 		.main-links,
 		.terms-link {
 			position: relative;
-			color: var(--grey);
+			color: var(--white);
 			text-decoration: none;
 			transition: color 0.3s var(--easeOutExpo);
 			width: fit-content;

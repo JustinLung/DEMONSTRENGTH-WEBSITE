@@ -5,9 +5,7 @@
 <section class="container">
 	<h1>404</h1>
 	<p>
-		Het lijkt erop dat deze pagina niet bestaat. Geen paniek! Je kunt terug naar onze homepage om je
-		powerlifting doelen weer op te bouwen. Blijf in beweging en ontdek wat je nog meer kunt
-		bereiken! 💪
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Return to the placeholder home page.
 	</p>
 	<Button href="/" primary>Home</Button>
 </section>

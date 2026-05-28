@@ -6,9 +6,17 @@
 	interface AboutInterface {
 		title: string;
 		description: string;
+		image?: {
+			src: string;
+			alt?: string;
+		};
 	}
 
-	const { title, description }: AboutInterface = $props();
+	const {
+		title,
+		description,
+		image = { src: '/images/placeholder.svg', alt: 'Placeholder' }
+	}: AboutInterface = $props();
 
 	onMount(() => {
 		gsap.to('.about-image, .about-text', {
@@ -27,7 +35,7 @@
 </script>
 
 <section class="container" id="about">
-	<img src="/images/placeholder.png" alt="placeholder" class="about-image" draggable="false" />
+	<img src={image.src} alt={image.alt} class="about-image" draggable="false" />
 	<div class="about-text">
 		<h2>{title}</h2>
 		<p>{description}</p>
@@ -87,7 +95,7 @@
 			color: var(--grey);
 
 			@media (--lg) {
-				font-size: 1.2rem;
+				font-size: 1rem;
 			}
 		}
 	}

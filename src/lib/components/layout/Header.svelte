@@ -3,9 +3,31 @@
 	import { easeInOutExpo } from '$lib/utils/transition';
 	import { onDestroy, onMount } from 'svelte';
 	import Button from '../shared/Button.svelte';
-	import { links } from '$lib/utils/links';
 
-	const showButton = links.length > 0 && links[links.length - 1].title === 'Login';
+	type HeaderLink = {
+		href: string;
+		title: string;
+	};
+
+	type HeaderBrand = {
+		title: string;
+		href: string;
+	};
+
+	interface HeaderProps {
+		brand?: HeaderBrand;
+		cta?: HeaderLink;
+	}
+
+	const { brand = { title: 'placeholder.', href: '/' }, cta }: HeaderProps = $props();
+
+	const mainLinks: HeaderLink[] = [
+		{ href: '/#highlights', title: 'Highlight' },
+		{ href: '/about', title: 'About' },
+		{ href: '/#reviews', title: 'Reviews' }
+	];
+	const mobileLinks = $derived(cta ? [...mainLinks, cta] : mainLinks);
+	const showButton = $derived(Boolean(cta));
 
 	let isOpen = $state(false);
 
@@ -44,10 +66,10 @@
 </script>
 
 <header class="container">
-	<a href="/" class="main-title">demonstrength.</a>
+	<a href={brand.href} class="main-title">{brand.title}</a>
 	<nav class="desktop-nav">
 		<ul>
-			{#each links as link}
+			{#each mainLinks as link}
 				<li>
 					<a href={link.href}>{link.title}</a>
 				</li>
@@ -56,9 +78,7 @@
 	</nav>
 
 	{#if showButton}
-		<Button classes="coaching-button" primary href={links[links.length - 1].href}
-			>{links[links.length - 1].title}</Button
-		>
+		<Button classes="cta-button" primary href={cta?.href}>{cta?.title}</Button>
 	{/if}
 
 	<button onclick={openMenu} class="hamburger-menu">
@@ -74,7 +94,7 @@
 			out:slide={{ duration: 500, easing: easeInOutExpo }}
 		>
 			<ul>
-				{#each links as link}
+				{#each mobileLinks as link}
 					<li>
 						<a
 							href={link.href}
@@ -118,21 +138,9 @@
 				display: flex;
 				gap: 20px;
 
-				li:last-child {
-					display: none;
-				}
-
-				li:first-child {
-					display: block;
-
-					@media (--md) {
-						display: none;
-					}
-				}
-
 				a {
 					position: relative;
-					color: var(--grey);
+					color: var(--white);
 					text-decoration: none;
 					transition: color 0.3s var(--easeOutExpo);
 
@@ -161,7 +169,7 @@
 			}
 		}
 
-		:global(.coaching-button) {
+		:global(.cta-button) {
 			display: none;
 			text-align: center;
 

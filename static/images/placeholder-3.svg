@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+	<title id="title">Placeholder image three</title>
+	<desc id="desc">A neutral placeholder graphic.</desc>
+	<rect width="1200" height="900" fill="#050505" />
+	<rect x="80" y="80" width="1040" height="740" rx="36" fill="#181818" stroke="#3f3f3f" stroke-width="4" />
+	<path d="M140 715L330 500L500 625L650 455L1060 715H140Z" fill="#303030" />
+	<circle cx="800" cy="270" r="78" fill="#606060" />
+	<text x="600" y="430" text-anchor="middle" fill="#fafafa" font-family="Arial, sans-serif" font-size="56" font-weight="700">Placeholder</text>
+</svg>
