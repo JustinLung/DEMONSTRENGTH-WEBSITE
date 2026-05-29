@@ -24,7 +24,7 @@
 	description={homepageData.about.description}
 	image={homepageData.about.image}
 />
-<section class="image-crossfade-section" aria-label="Placeholder image slideshow">
+<section class="image-crossfade-section">
 	<CrossfadeImages images={homepageData.hero.images} />
 </section>
 <Coaching {...homepageData.coaching} />
