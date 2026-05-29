@@ -66,7 +66,9 @@
 </script>
 
 <header class="container">
-	<a href={brand.href} class="main-title">{brand.title}</a>
+	<a href={brand.href} class="main-title" aria-label={brand.title}>
+		<img src="/images/logo-demonstrength.png" alt={brand.title} class="brand-logo" />
+	</a>
 	<nav class="desktop-nav">
 		<ul>
 			{#each mainLinks as link}
@@ -135,9 +137,20 @@
 
 		.main-title {
 			position: relative;
-			font-weight: 500;
-			font-size: 1.5rem;
 			z-index: 11;
+			display: inline-flex;
+			align-items: center;
+		}
+
+		.brand-logo {
+			display: block;
+			width: auto;
+			height: 70px;
+			object-fit: contain;
+
+			@media (--md) {
+				height: 70px;
+			}
 		}
 
 		.desktop-nav {

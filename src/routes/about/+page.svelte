@@ -1,10 +1,18 @@
 <script lang="ts">
+	import Seo from '$lib/components/shared/Seo.svelte';
 	import type { PageData } from './$types';
 
 	const { data }: { data: PageData } = $props();
 	const aboutPage = $derived(data.aboutPage);
 	const collageImages = $derived(aboutPage.showcase.images);
 </script>
+
+<Seo
+	title={aboutPage.seo.title ?? 'About'}
+	canonicalUrl={data.canonicalUrl}
+	description={aboutPage.seo.description ?? aboutPage.hero.intro}
+	imagePath={aboutPage.seo.imagePath ?? collageImages[2]?.src}
+/>
 
 <section class="about-hero container">
 	<h1>{aboutPage.hero.title}</h1>
@@ -22,11 +30,7 @@
 					<img src={collageImages[1]?.src} alt={collageImages[1]?.alt || ''} draggable="false" />
 				</div>
 				<div class="image-card image-card-large">
-					<img
-						src={collageImages[2]?.src}
-						alt={collageImages[2]?.alt || ''}
-						draggable="false"
-					/>
+					<img src={collageImages[2]?.src} alt={collageImages[2]?.alt || ''} draggable="false" />
 				</div>
 			</div>
 
@@ -41,7 +45,9 @@
 					<p>
 						{aboutPage.showcase.closingText}
 						{#if aboutPage.showcase.closingLink}
-							<a href={aboutPage.showcase.closingLink.href}>{aboutPage.showcase.closingLink.title}</a>.
+							<a href={aboutPage.showcase.closingLink.href}
+								>{aboutPage.showcase.closingLink.title}</a
+							>.
 						{/if}
 					</p>
 				{/if}

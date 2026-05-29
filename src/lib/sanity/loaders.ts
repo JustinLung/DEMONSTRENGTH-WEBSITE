@@ -9,6 +9,11 @@ type HomePageData = typeof fallbackHomepage;
 type SiteData = typeof fallbackSite;
 
 const fallbackAboutPage = {
+	seo: {
+		title: undefined as string | undefined,
+		description: undefined as string | undefined,
+		imagePath: undefined as string | undefined
+	},
 	hero: {
 		title: 'Placeholder About Headline',
 		intro:
@@ -40,6 +45,7 @@ const fallbackAboutPage = {
 type AboutPageData = typeof fallbackAboutPage;
 
 type SanityHomePage = Partial<HomePageData> & {
+	seo?: Partial<HomePageData['seo']>;
 	hero?: Partial<HomePageData['hero']>;
 	about?: Partial<HomePageData['about']>;
 	coaching?: Partial<HomePageData['coaching']>;
@@ -52,6 +58,7 @@ type SanitySite = Partial<SiteData> & {
 };
 
 type SanityAboutPage = Partial<AboutPageData> & {
+	seo?: Partial<AboutPageData['seo']>;
 	hero?: Partial<AboutPageData['hero']>;
 	showcase?: Partial<AboutPageData['showcase']>;
 };
@@ -69,6 +76,10 @@ export async function loadHomePage(): Promise<HomePageData> {
 		return {
 			...fallbackHomepage,
 			...data,
+			seo: {
+				...fallbackHomepage.seo,
+				...data.seo
+			},
 			hero: {
 				...fallbackHomepage.hero,
 				...data.hero,
@@ -123,6 +134,10 @@ export async function loadAboutPage(): Promise<AboutPageData> {
 		return {
 			...fallbackAboutPage,
 			...data,
+			seo: {
+				...fallbackAboutPage.seo,
+				...data.seo
+			},
 			hero: {
 				...fallbackAboutPage.hero,
 				...data.hero

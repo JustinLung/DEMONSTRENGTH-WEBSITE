@@ -40,6 +40,11 @@ export const site = {
 };
 
 export const homepage = {
+	seo: {
+		title: undefined as string | undefined,
+		description: undefined as string | undefined,
+		imagePath: undefined as string | undefined
+	},
 	hero: {
 		title: 'Placeholder headline for the home page',
 		description:

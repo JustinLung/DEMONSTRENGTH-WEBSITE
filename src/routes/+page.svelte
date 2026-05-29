@@ -6,11 +6,19 @@
 	import Carousel from '$lib/components/shared/Carousel.svelte';
 	import CrossfadeImages from '$lib/components/shared/CrossfadeImages.svelte';
 	import CTA from '$lib/components/shared/CTA.svelte';
+	import Seo from '$lib/components/shared/Seo.svelte';
 	import type { PageData } from './$types';
 
 	const { data }: { data: PageData } = $props();
 	const homepageData = $derived(data.homepage);
 </script>
+
+<Seo
+	title={homepageData.seo.title}
+	canonicalUrl={data.canonicalUrl}
+	description={homepageData.seo.description ?? homepageData.hero.description}
+	imagePath={homepageData.seo.imagePath ?? homepageData.hero.images[0]?.src}
+/>
 
 <Hero
 	title={homepageData.hero.title}

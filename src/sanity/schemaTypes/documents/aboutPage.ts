@@ -13,6 +13,11 @@ export const aboutPage = defineType({
 			validation: (Rule) => Rule.required()
 		}),
 		defineField({
+			name: 'seo',
+			title: 'SEO',
+			type: 'seo'
+		}),
+		defineField({
 			name: 'hero',
 			title: 'Hero',
 			type: 'object',
@@ -48,7 +53,8 @@ export const aboutPage = defineType({
 				defineField({
 					name: 'images',
 					title: 'Image collage',
-					description: 'Add three images: small, medium, and large. The large image should have descriptive alt text.',
+					description:
+						'Add three images: small, medium, and large. The large image should have descriptive alt text.',
 					type: 'array',
 					of: [{ type: 'imageWithAlt' }],
 					validation: (Rule) => Rule.required().length(3)

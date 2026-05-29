@@ -13,6 +13,11 @@ export const homePage = defineType({
 			validation: (Rule) => Rule.required()
 		}),
 		defineField({
+			name: 'seo',
+			title: 'SEO',
+			type: 'seo'
+		}),
+		defineField({
 			name: 'hero',
 			title: 'Hero',
 			type: 'heroSection'

@@ -1,4 +1,9 @@
 export const homePageQuery = `*[_type == "homePage"][0]{
+	seo{
+		title,
+		description,
+		"imagePath": image.asset->url
+	},
 	hero{
 		title,
 		description,
@@ -93,6 +98,11 @@ export const siteSettingsQuery = `*[_type == "siteSettings"][0]{
 }`;
 
 export const aboutPageQuery = `*[_type == "aboutPage"][0]{
+	seo{
+		title,
+		description,
+		"imagePath": image.asset->url
+	},
 	hero{
 		title,
 		intro
