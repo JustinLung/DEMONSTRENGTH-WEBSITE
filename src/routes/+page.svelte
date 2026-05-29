@@ -24,10 +24,10 @@
 	description={homepageData.about.description}
 	image={homepageData.about.image}
 />
-<Coaching {...homepageData.coaching} />
 <section class="image-crossfade-section" aria-label="Placeholder image slideshow">
 	<CrossfadeImages images={homepageData.hero.images} />
 </section>
+<Coaching {...homepageData.coaching} />
 <Carousel title={homepageData.highlightTitle} items={homepageData.highlights} />
 
 <Reviews
