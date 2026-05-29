@@ -385,6 +385,10 @@
 		position: relative;
 		z-index: 1;
 		width: min(100%, 520px);
+		max-height: calc(100 * var(--svh) - 48px);
+		overflow-y: auto;
+		overscroll-behavior: contain;
+		scrollbar-gutter: stable;
 		border-radius: 12px;
 		background: var(--tertiary);
 		box-shadow: 0 24px 80px rgb(0 0 0 / 0.5);
