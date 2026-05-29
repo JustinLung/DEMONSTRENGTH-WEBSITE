@@ -17,6 +17,17 @@ export const homePageQuery = `*[_type == "homePage"][0]{
 			"alt": image.alt
 		}
 	},
+	coaching{
+		eyebrow,
+		title,
+		description,
+		"includedTitle": includedTitle,
+		items,
+		"image": {
+			"src": image.asset->url,
+			"alt": image.alt
+		}
+	},
 	"highlightTitle": highlights.title,
 	"highlights": highlights.items[]{
 		tag,

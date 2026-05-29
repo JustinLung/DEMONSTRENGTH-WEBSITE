@@ -2,6 +2,7 @@ import { cta } from './objects/cta';
 import { imageWithAlt } from './objects/imageWithAlt';
 import { link } from './objects/link';
 import { aboutSection } from './sections/aboutSection';
+import { coachingSection } from './sections/coachingSection';
 import { ctaSection } from './sections/ctaSection';
 import { heroSection } from './sections/heroSection';
 import { highlightsSection } from './sections/highlightsSection';
@@ -16,6 +17,7 @@ export const schemaTypes = [
 	imageWithAlt,
 	heroSection,
 	aboutSection,
+	coachingSection,
 	highlightsSection,
 	reviewsSection,
 	ctaSection,

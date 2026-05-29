@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Hero from '$lib/components/shared/Hero.svelte';
 	import About from '$lib/components/shared/About.svelte';
+	import Coaching from '$lib/components/shared/Coaching.svelte';
 	import Reviews from '$lib/components/shared/Reviews.svelte';
 	import Carousel from '$lib/components/shared/Carousel.svelte';
 	import CrossfadeImages from '$lib/components/shared/CrossfadeImages.svelte';
@@ -23,6 +24,7 @@
 	description={homepageData.about.description}
 	image={homepageData.about.image}
 />
+<Coaching {...homepageData.coaching} />
 <section class="image-crossfade-section" aria-label="Placeholder image slideshow">
 	<CrossfadeImages images={homepageData.hero.images} />
 </section>

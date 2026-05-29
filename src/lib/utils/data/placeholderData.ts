@@ -71,6 +71,24 @@ export const homepage = {
 			alt: 'Placeholder'
 		}
 	},
+	coaching: {
+		eyebrow: 'Online coaching',
+		title: 'Coaching',
+		description:
+			'Alles wat je nodig hebt om sterker te worden met structuur, duidelijke feedback en een aanpak die je vol kunt houden.',
+		image: {
+			src: placeholderImage,
+			alt: 'Krachttraining coaching'
+		},
+		includedTitle: 'Wat zit er bij coaching?',
+		items: [
+			'Persoonlijk trainingsschema afgestemd op jouw doelen',
+			'Wekelijkse check-ins en gerichte bijsturing',
+			'Techniekfeedback op je lifts via videoanalyse',
+			'Voedingsadvies dat past bij je training en levensstijl',
+			'Direct contact voor vragen, motivatie en accountability'
+		]
+	},
 	cta: {
 		title: 'Klaar om',
 		highlight: 'te starten?',

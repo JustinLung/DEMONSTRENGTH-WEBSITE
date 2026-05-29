@@ -1,4 +1,7 @@
-import { homepage as fallbackHomepage, site as fallbackSite } from '$lib/utils/data/placeholderData';
+import {
+	homepage as fallbackHomepage,
+	site as fallbackSite
+} from '$lib/utils/data/placeholderData';
 import { sanityFetch } from './client';
 import { aboutPageQuery, homePageQuery, siteSettingsQuery } from './queries';
 
@@ -8,7 +11,8 @@ type SiteData = typeof fallbackSite;
 const fallbackAboutPage = {
 	hero: {
 		title: 'Placeholder About Headline',
-		intro: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus auctor fringilla.'
+		intro:
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus auctor fringilla.'
 	},
 	showcase: {
 		images: [
@@ -38,6 +42,7 @@ type AboutPageData = typeof fallbackAboutPage;
 type SanityHomePage = Partial<HomePageData> & {
 	hero?: Partial<HomePageData['hero']>;
 	about?: Partial<HomePageData['about']>;
+	coaching?: Partial<HomePageData['coaching']>;
 	cta?: Partial<HomePageData['cta']>;
 };
 
@@ -84,6 +89,17 @@ export async function loadHomePage(): Promise<HomePageData> {
 					...fallbackHomepage.about.image,
 					...data.about?.image
 				}
+			},
+			coaching: {
+				...fallbackHomepage.coaching,
+				...data.coaching,
+				image: {
+					...fallbackHomepage.coaching.image,
+					...data.coaching?.image
+				},
+				items: hasItems(data.coaching?.items)
+					? data.coaching.items
+					: fallbackHomepage.coaching.items
 			},
 			highlights: hasItems(data.highlights) ? data.highlights : fallbackHomepage.highlights,
 			review: hasItems(data.review) ? data.review : fallbackHomepage.review,
