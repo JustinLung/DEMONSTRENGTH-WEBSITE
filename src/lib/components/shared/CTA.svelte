@@ -18,7 +18,7 @@
 	}: CTAProps = $props();
 </script>
 
-<section class="cta-section container" aria-labelledby="cta-title">
+<section class="cta-section container" aria-labelledby="cta-title" id="contact">
 	<div class="cta-card">
 		<div class="cta-glow" aria-hidden="true"></div>
 		<div class="cta-content">
