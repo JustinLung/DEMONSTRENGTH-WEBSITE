@@ -74,10 +74,10 @@ export const highlightsSection = defineType({
 						defineField({
 							name: 'videoFile',
 							title: 'Video file',
-							description: 'Upload an MP4 file for the carousel modal.',
+							description: 'Upload an MP4 or MOV file for the carousel modal.',
 							type: 'file',
 							options: {
-								accept: 'video/mp4'
+								accept: 'video/mp4,video/quicktime,.mov'
 							},
 							hidden: ({ parent }) => parent?.mediaType !== 'video',
 							validation: (Rule) =>
@@ -89,14 +89,10 @@ export const highlightsSection = defineType({
 						defineField({
 							name: 'videoThumbnail',
 							title: 'Video thumbnail',
-							description: 'Shown in the carousel before the video opens.',
+							description:
+								'Optional. Shown in the carousel before the video opens. If empty, the site uses a frame from the video.',
 							type: 'imageWithAlt',
-							hidden: ({ parent }) => parent?.mediaType !== 'video',
-							validation: (Rule) =>
-								Rule.custom((value, context) => {
-									const parent = context.parent as { mediaType?: string };
-									return parent?.mediaType === 'video' && !value ? 'Video thumbnail is required.' : true;
-								})
+							hidden: ({ parent }) => parent?.mediaType !== 'video'
 						})
 					]
 				}

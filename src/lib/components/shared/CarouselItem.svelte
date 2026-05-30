@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { portal } from 'svelte-portal';
 	import { fly, scale } from 'svelte/transition';
 	import VideoIcon from '../icons/VideoIcon.svelte';
@@ -6,6 +7,7 @@
 	const {
 		tag = 'Placeholder',
 		videoSrc,
+		videoType,
 		thumbnailSrc,
 		thumbnailAlt,
 		classes,
@@ -14,6 +16,7 @@
 	}: {
 		tag: string;
 		videoSrc?: string;
+		videoType?: string;
 		classes?: string;
 		thumbnailSrc?: string;
 		thumbnailAlt?: string;
@@ -22,6 +25,8 @@
 	} = $props();
 
 	let isOpen = $state(false);
+	let generatedThumbnailSrc = $state<string>();
+	const posterSrc = $derived(thumbnailSrc || generatedThumbnailSrc);
 
 	const openModal = () => {
 		isOpen = true;
@@ -30,6 +35,80 @@
 	const closeModal = () => {
 		isOpen = false;
 	};
+
+	const generateVideoThumbnail = (src: string) => {
+		const video = document.createElement('video');
+		let shouldCaptureAtStart = false;
+		let cancelled = false;
+
+		const cleanup = () => {
+			video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+			video.removeEventListener('loadeddata', handleLoadedData);
+			video.removeEventListener('seeked', captureFrame);
+			video.removeEventListener('error', cleanup);
+			video.removeAttribute('src');
+			video.load();
+		};
+
+		const captureFrame = () => {
+			if (cancelled || generatedThumbnailSrc || !video.videoWidth || !video.videoHeight) return;
+
+			const canvas = document.createElement('canvas');
+			canvas.width = video.videoWidth;
+			canvas.height = video.videoHeight;
+
+			const context = canvas.getContext('2d');
+			if (!context) return;
+
+			try {
+				context.drawImage(video, 0, 0, canvas.width, canvas.height);
+				generatedThumbnailSrc = canvas.toDataURL('image/jpeg', 0.85);
+			} catch {
+				// Cross-origin or unsupported video frames cannot always be drawn to canvas.
+			} finally {
+				cleanup();
+			}
+		};
+
+		function handleLoadedMetadata() {
+			const captureTime = Number.isFinite(video.duration) && video.duration > 1 ? 1 : 0;
+			shouldCaptureAtStart = captureTime === 0;
+
+			if (shouldCaptureAtStart) return;
+
+			try {
+				video.currentTime = captureTime;
+			} catch {
+				shouldCaptureAtStart = true;
+			}
+		}
+
+		function handleLoadedData() {
+			if (shouldCaptureAtStart) captureFrame();
+		}
+
+		video.crossOrigin = 'anonymous';
+		video.muted = true;
+		video.playsInline = true;
+		video.preload = 'metadata';
+		video.addEventListener('loadedmetadata', handleLoadedMetadata);
+		video.addEventListener('loadeddata', handleLoadedData);
+		video.addEventListener('seeked', captureFrame);
+		video.addEventListener('error', cleanup);
+		video.src = src;
+		video.load();
+
+		return () => {
+			cancelled = true;
+			cleanup();
+		};
+	};
+
+	onMount(() => {
+		if (mediaType !== 'video' || thumbnailSrc || !videoSrc) return;
+
+		return generateVideoThumbnail(videoSrc);
+	});
 </script>
 
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
@@ -48,7 +127,9 @@
 		<span><VideoIcon /></span>
 		<span class="tag">{tag}</span>
 	</div>
-	<img src={thumbnailSrc} alt={thumbnailAlt} class="thumbnail" />
+	{#if posterSrc}
+		<img src={posterSrc} alt={thumbnailAlt} class="thumbnail" />
+	{/if}
 </article>
 
 {#if isOpen}
@@ -64,11 +145,11 @@
 		<div class="modal-content" transition:fly={{ y: 200, duration: 400, delay: 0.3 }}>
 			{#if mediaType === 'video'}
 				<!-- svelte-ignore a11y_media_has_caption -->
-				<video controls poster={thumbnailSrc} onclick={(event) => event.stopPropagation()}>
-					<source src={videoSrc} type="video/mp4" />
+				<video controls poster={posterSrc} onclick={(event) => event.stopPropagation()}>
+					<source src={videoSrc} type={videoType || 'video/mp4'} />
 				</video>
 			{:else if mediaType === 'image'}
-				<img src={thumbnailSrc} alt={thumbnailAlt} class="modal-image" />
+				<img src={posterSrc} alt={thumbnailAlt} class="modal-image" />
 			{/if}
 		</div>
 	</div>

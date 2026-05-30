@@ -128,7 +128,8 @@
 			{#each items as item}
 				<CarouselItem
 					tag={item.tag}
-					videoSrc={item.media.mimeType === 'video/mp4' ? item.media.url : undefined}
+					videoSrc={item.media.mimeType.startsWith('video/') ? item.media.url : undefined}
+					videoType={item.media.mimeType}
 					thumbnailSrc={item.media.mimeType.startsWith('image/')
 						? item.media.url
 						: item?.media?.video?.thumbnailUrl}
