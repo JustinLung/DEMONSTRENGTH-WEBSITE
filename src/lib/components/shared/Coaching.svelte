@@ -101,7 +101,7 @@
 		align-content: end;
 		min-height: 280px;
 		overflow: hidden;
-		background-color: var(--tertiary);
+		background-color: var(--black);
 		background-image:
 			linear-gradient(180deg, rgb(0 0 0 / 0.2), rgb(0 0 0 / 0.78)),
 			var(--coaching-image-url);
@@ -128,7 +128,7 @@
 		width: fit-content;
 		padding: 4px 12px;
 		border-radius: 9999px;
-		font-size: 0.8rem;
+		font-size: 0.875rem;
 		font-weight: 700;
 		letter-spacing: 0.12em;
 		text-transform: uppercase;
@@ -156,7 +156,7 @@
 	.coaching-card {
 		padding: 24px;
 		background:
-			linear-gradient(180deg, rgb(255 255 255 / 0.035), rgb(255 255 255 / 0.01)), var(--tertiary);
+			linear-gradient(180deg, rgb(255 255 255 / 0.035), rgb(255 255 255 / 0.01)), var(--black);
 
 		@media (--lg) {
 			padding: 40px;
@@ -175,7 +175,6 @@
 
 	ul {
 		display: grid;
-		gap: 14px;
 		margin: 0;
 		padding: 0;
 		list-style: none;
@@ -184,7 +183,7 @@
 	li {
 		position: relative;
 		border-radius: 10px;
-		padding: 18px 18px 18px 48px;
+		padding: 16px;
 		background: rgb(0 0 0 / 0.2);
 		color: var(--white);
 		line-height: 1.45;
@@ -194,11 +193,10 @@
 		content: '';
 		position: absolute;
 		top: 22px;
-		left: 20px;
+		left: 0;
 		width: 10px;
 		height: 10px;
 		border-radius: 50%;
 		background: var(--primary);
-		box-shadow: 0 0 20px rgb(75 0 130 / 0.8);
 	}
 </style>
