@@ -3,29 +3,15 @@
 	import { easeInOutExpo } from '$lib/utils/transition';
 	import { onDestroy, onMount } from 'svelte';
 	import Button from '../shared/Button.svelte';
-
-	type HeaderLink = {
-		href: string;
-		title: string;
-	};
-
-	type HeaderBrand = {
-		title: string;
-		href: string;
-	};
+	import { mainLinks, type Link, type Brand } from '$lib/utils/links';
 
 	interface HeaderProps {
-		brand?: HeaderBrand;
-		cta?: HeaderLink;
+		brand?: Brand;
+		cta?: Link;
 	}
 
 	const { brand = { title: 'placeholder.', href: '/' }, cta }: HeaderProps = $props();
 
-	const mainLinks: HeaderLink[] = [
-		{ href: '/#highlights', title: 'Highlight' },
-		{ href: '/about', title: 'About' },
-		{ href: '/#reviews', title: 'Reviews' }
-	];
 	const mobileLinks = $derived(cta ? [...mainLinks, cta] : mainLinks);
 	const showButton = $derived(Boolean(cta));
 

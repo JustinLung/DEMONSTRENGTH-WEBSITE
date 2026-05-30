@@ -61,19 +61,27 @@
 	});
 </script>
 
-<div class="crossfade-images {classes}" style:--transition-ms={`${transitionMs}ms`} aria-hidden="true">
-	{#each images as image, index}
-		<img
-			src={image.src}
-			alt=""
-			class:active={index === activeIndex}
-			draggable="false"
-			loading={index === 0 ? 'eager' : 'lazy'}
-		/>
-	{/each}
-</div>
+<section class="image-crossfade-section {classes}" aria-hidden="true">
+	<div class="crossfade-images" style:--transition-ms={`${transitionMs}ms`}>
+		{#each images as image, index}
+			<img
+				src={image.src}
+				alt=""
+				class:active={index === activeIndex}
+				draggable="false"
+				loading={index === 0 ? 'eager' : 'lazy'}
+			/>
+		{/each}
+	</div>
+</section>
 
 <style lang="postcss">
+	.image-crossfade-section {
+		position: relative;
+		height: calc(100 * var(--svh));
+		overflow: hidden;
+	}
+
 	.crossfade-images {
 		position: absolute;
 		inset: 0;

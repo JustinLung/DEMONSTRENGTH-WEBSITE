@@ -32,9 +32,7 @@
 	description={homepageData.about.description}
 	image={homepageData.about.image}
 />
-<section class="image-crossfade-section">
-	<CrossfadeImages images={homepageData.hero.images} />
-</section>
+<CrossfadeImages images={homepageData.hero.images} />
 <Coaching {...homepageData.coaching} />
 <Carousel title={homepageData.highlightTitle} items={homepageData.highlights} />
 
@@ -48,12 +46,6 @@
 <style lang="postcss">
 	:global(main > section:not(.hero)) {
 		margin-block: 64px;
-	}
-
-	.image-crossfade-section {
-		position: relative;
-		height: calc(100 * var(--svh));
-		overflow: hidden;
 	}
 
 	@media (--md) {

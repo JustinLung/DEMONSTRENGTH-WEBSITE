@@ -26,12 +26,6 @@
 		items
 	}: CoachingProps = $props();
 
-	const backgroundImage = $derived(
-		image.src
-			? `linear-gradient(180deg, rgb(0 0 0 / 0.2), rgb(0 0 0 / 0.78)), url("${image.src}")`
-			: undefined
-	);
-
 	onMount(() => {
 		gsap.fromTo(
 			'.coaching-reveal',
@@ -59,7 +53,7 @@
 <section class="coaching-section container" id="coaching" aria-labelledby="coaching-title">
 	<div
 		class="coaching-image coaching-reveal"
-		style:background-image={backgroundImage}
+		style:--coaching-image-url={image.src ? `url("${image.src}")` : undefined}
 		role="img"
 		aria-label={image.alt || title}
 	>
@@ -108,6 +102,9 @@
 		min-height: 280px;
 		overflow: hidden;
 		background-color: var(--tertiary);
+		background-image:
+			linear-gradient(180deg, rgb(0 0 0 / 0.2), rgb(0 0 0 / 0.78)),
+			var(--coaching-image-url);
 		background-position: center;
 		background-size: cover;
 
