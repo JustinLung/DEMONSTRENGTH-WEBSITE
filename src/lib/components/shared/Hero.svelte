@@ -154,7 +154,7 @@
 		}
 
 		@media (max-width: 47.999em) {
-			align-items: flex-start;
+			align-items: center;
 
 			:global(.hero-images img) {
 				object-position: 62% center;
@@ -165,10 +165,6 @@
 					radial-gradient(circle at 70% 54%, transparent 0 18%, rgb(0 0 0 / 0.34) 54%, var(--black) 100%),
 					linear-gradient(180deg, rgb(0 0 0 / 0.64) 0%, rgb(0 0 0 / 0.2) 24%, rgb(0 0 0 / 0.7) 72%, var(--black) 100%),
 					linear-gradient(90deg, rgb(0 0 0 / 0.76) 0%, rgb(0 0 0 / 0.2) 100%);
-			}
-
-			.hero-content {
-				padding-top: calc(var(--header-height) + 17rem);
 			}
 		}
 	}
