@@ -11,6 +11,7 @@ body {
   color: var(--white);
   position: relative;
   font-family: "Inter";
+  scroll-behavior: smooth;
 }
 
 a {
