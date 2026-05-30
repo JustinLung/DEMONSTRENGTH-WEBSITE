@@ -5,9 +5,10 @@
 <section class="container">
 	<h1>404</h1>
 	<p>
-		De pagina die je zoekt bestaat niet. Ga terug naar de homepagina.
+		Geen stress. Ook sterke progressie vraagt soms om bijsturen. Ga terug naar Demonstrength en
+		ontdek hoe persoonlijke coaching je helpt sterker, fitter en consistenter te worden.
 	</p>
-	<Button href="/" primary>Home</Button>
+	<Button href="/" primary>Terug naar home</Button>
 </section>
 
 <style lang="postcss">
