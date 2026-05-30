@@ -59,6 +59,7 @@
 			margin-bottom: 20px;
 			opacity: 0;
 			transform: translateY(30px);
+			border-radius: 12px;
 
 			@media (--xl) {
 				max-width: 800px;
