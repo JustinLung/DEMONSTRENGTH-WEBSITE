@@ -11,6 +11,7 @@ import { reviewsSection } from './sections/reviewsSection';
 import { aboutPage } from './documents/aboutPage';
 import { homePage } from './documents/homePage';
 import { siteSettings } from './documents/siteSettings';
+import { termsAndConditionsPage } from './documents/termsAndConditionsPage';
 
 export const schemaTypes = [
 	link,
@@ -25,5 +26,6 @@ export const schemaTypes = [
 	ctaSection,
 	aboutPage,
 	homePage,
+	termsAndConditionsPage,
 	siteSettings
 ];

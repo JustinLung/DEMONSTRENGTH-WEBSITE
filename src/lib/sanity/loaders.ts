@@ -3,7 +3,12 @@ import {
 	site as fallbackSite
 } from '$lib/utils/data/placeholderData';
 import { sanityFetch } from './client';
-import { aboutPageQuery, homePageQuery, siteSettingsQuery } from './queries';
+import {
+	aboutPageQuery,
+	homePageQuery,
+	siteSettingsQuery,
+	termsAndConditionsPageQuery
+} from './queries';
 
 type HomePageData = typeof fallbackHomepage;
 type SiteData = typeof fallbackSite;
@@ -44,6 +49,50 @@ const fallbackAboutPage = {
 
 type AboutPageData = typeof fallbackAboutPage;
 
+const fallbackTermsAndConditionsPage = {
+	seo: {
+		title: undefined as string | undefined,
+		description: 'Lees de algemene voorwaarden van Demonstrength.',
+		imagePath: undefined as string | undefined
+	},
+	hero: {
+		title: 'Terms and Conditions',
+		intro: ''
+	},
+	sections: [
+		{
+			title: '1. Placeholder Section',
+			paragraphs: [
+				'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus.'
+			]
+		},
+		{
+			title: '2. Placeholder Section',
+			paragraphs: [
+				'Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper.'
+			]
+		},
+		{
+			title: '3. Placeholder Section',
+			paragraphs: [
+				'Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum.'
+			]
+		}
+	],
+	contact: {
+		title: 'Placeholder Contact',
+		lines: [
+			'Placeholder Company',
+			'Placeholder Address',
+			'Placeholder Phone',
+			'Placeholder Email',
+			'Placeholder Website'
+		]
+	}
+};
+
+type TermsAndConditionsPageData = typeof fallbackTermsAndConditionsPage;
+
 type SanityHomePage = Partial<HomePageData> & {
 	seo?: Partial<HomePageData['seo']>;
 	hero?: Partial<HomePageData['hero']>;
@@ -61,6 +110,12 @@ type SanityAboutPage = Partial<AboutPageData> & {
 	seo?: Partial<AboutPageData['seo']>;
 	hero?: Partial<AboutPageData['hero']>;
 	showcase?: Partial<AboutPageData['showcase']>;
+};
+
+type SanityTermsAndConditionsPage = Partial<TermsAndConditionsPageData> & {
+	seo?: Partial<TermsAndConditionsPageData['seo']>;
+	hero?: Partial<TermsAndConditionsPageData['hero']>;
+	contact?: Partial<TermsAndConditionsPageData['contact']>;
 };
 
 function hasItems<T>(items: T[] | undefined): items is T[] {
@@ -160,6 +215,40 @@ export async function loadAboutPage(): Promise<AboutPageData> {
 	} catch (error) {
 		console.error('Failed to load Sanity about page content', error);
 		return fallbackAboutPage;
+	}
+}
+
+export async function loadTermsAndConditionsPage(): Promise<TermsAndConditionsPageData> {
+	try {
+		const data = await sanityFetch<SanityTermsAndConditionsPage>(termsAndConditionsPageQuery);
+
+		if (!data) return fallbackTermsAndConditionsPage;
+
+		return {
+			...fallbackTermsAndConditionsPage,
+			...data,
+			seo: {
+				...fallbackTermsAndConditionsPage.seo,
+				...data.seo
+			},
+			hero: {
+				...fallbackTermsAndConditionsPage.hero,
+				...data.hero
+			},
+			sections: hasItems(data.sections)
+				? data.sections
+				: fallbackTermsAndConditionsPage.sections,
+			contact: {
+				...fallbackTermsAndConditionsPage.contact,
+				...data.contact,
+				lines: hasItems(data.contact?.lines)
+					? data.contact.lines
+					: fallbackTermsAndConditionsPage.contact.lines
+			}
+		};
+	} catch (error) {
+		console.error('Failed to load Sanity terms and conditions page content', error);
+		return fallbackTermsAndConditionsPage;
 	}
 }
 

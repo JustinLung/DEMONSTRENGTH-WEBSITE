@@ -43,7 +43,7 @@
 				<a href={link.href} class="main-links">{link.title}</a>
 			{/each}
 		</nav>
-		<a href={socialLink.href} aria-label={socialLink.label}>
+		<a href={socialLink.href} aria-label={socialLink.label} target="_blank" rel="noopener noreferrer">
 			<svg
 				width="24"
 				height="24"

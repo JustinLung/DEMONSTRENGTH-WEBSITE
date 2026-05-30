@@ -3,44 +3,41 @@
 	import type { PageData } from './$types';
 
 	const { data }: { data: PageData } = $props();
+	const termsPage = $derived(data.termsAndConditionsPage);
 </script>
 
 <Seo
-	title="Terms and Conditions"
+	title={termsPage.seo.title ?? termsPage.hero.title}
 	canonicalUrl={data.canonicalUrl}
-	description="Lees de algemene voorwaarden van Demonstrength."
+	description={termsPage.seo.description}
+	imagePath={termsPage.seo.imagePath}
 	noindex
 />
 
 <section class="terms-and-conditions container">
-	<h1>Placeholder Terms And Conditions</h1>
+	<h1>{termsPage.hero.title}</h1>
 
-	<h2>1. Placeholder Section</h2>
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis
-		dapibus.
-	</p>
+	{#if termsPage.hero.intro}
+		<p class="intro">{termsPage.hero.intro}</p>
+	{/if}
 
-	<h2>2. Placeholder Section</h2>
-	<p>
-		Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod
-		semper.
-	</p>
+	{#each termsPage.sections as section}
+		<section class="terms-section">
+			<h2>{section.title}</h2>
 
-	<h2>3. Placeholder Section</h2>
-	<p>
-		Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur
-		purus sit amet fermentum.
-	</p>
+			{#each section.paragraphs as paragraph}
+				<p>{paragraph}</p>
+			{/each}
+		</section>
+	{/each}
 
 	<div class="contact-info">
-		<h2>Placeholder Contact</h2>
+		<h2>{termsPage.contact.title}</h2>
+
 		<p>
-			Placeholder Company<br />
-			Placeholder Address<br />
-			Placeholder Phone<br />
-			Placeholder Email<br />
-			Placeholder Website
+			{#each termsPage.contact.lines as line}
+				<span>{line}</span>
+			{/each}
 		</p>
 	</div>
 </section>
@@ -51,5 +48,16 @@
 		display: grid;
 		gap: 16px;
 		max-width: 780px;
+	}
+
+	.intro,
+	.terms-section,
+	.contact-info {
+		display: grid;
+		gap: 12px;
+	}
+
+	.contact-info span {
+		display: block;
 	}
 </style>

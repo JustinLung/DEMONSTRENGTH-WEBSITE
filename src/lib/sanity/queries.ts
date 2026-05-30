@@ -121,3 +121,23 @@ export const aboutPageQuery = `*[_type == "aboutPage"][0]{
 		}
 	}
 }`;
+
+export const termsAndConditionsPageQuery = `*[_type == "termsAndConditionsPage"][0]{
+	seo{
+		title,
+		description,
+		"imagePath": image.asset->url
+	},
+	hero{
+		title,
+		intro
+	},
+	sections[]{
+		title,
+		paragraphs
+	},
+	contact{
+		title,
+		lines
+	}
+}`;
