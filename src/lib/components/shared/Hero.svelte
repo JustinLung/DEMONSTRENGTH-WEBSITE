@@ -109,33 +109,8 @@
 			z-index: -1;
 			pointer-events: none;
 			background:
-				linear-gradient(90deg, rgb(0 0 0 / 0.92) 0%, rgb(0 0 0 / 0.68) 25%, rgb(0 0 0 / 0.24) 70%),
-				linear-gradient(180deg, rgb(0 0 0 / 0.64) 0%, transparent 70%, var(--black) 100%);
-
-			&::before,
-			&::after {
-				content: '';
-				position: absolute;
-				left: 0;
-				right: 0;
-				height: 14%;
-				backdrop-filter: blur(4px);
-				-webkit-backdrop-filter: blur(4px);
-			}
-
-			&::before {
-				top: 0;
-				background: linear-gradient(to bottom, rgb(0 0 0 / 0.42), transparent);
-				mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
-				-webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
-			}
-
-			&::after {
-				bottom: 0;
-				background: linear-gradient(to top, rgb(0 0 0 / 0.48), transparent);
-				mask-image: linear-gradient(to top, black 0%, transparent 50%);
-				-webkit-mask-image: linear-gradient(to top, black 0%, transparent 50%);
-			}
+				linear-gradient(-180deg, rgb(0 0 0 / 0.92) 0%, rgb(0 0 0 / 0.68) 5%, rgb(0 0 0 / 0.24) 30%),
+				linear-gradient(180deg, rgb(0 0 0 / 0.64) 0%, transparent 94%, var(--black) 100%);
 		}
 
 		.hero-content {
@@ -187,9 +162,8 @@
 
 			.hero-vignette {
 				background:
-					radial-gradient(circle at 70% 54%, transparent 0 18%, rgb(0 0 0 / 0.34) 54%, var(--black) 100%),
-					linear-gradient(180deg, rgb(0 0 0 / 0.64) 0%, rgb(0 0 0 / 0.2) 24%, rgb(0 0 0 / 0.7) 72%, var(--black) 100%),
-					linear-gradient(90deg, rgb(0 0 0 / 0.76) 0%, rgb(0 0 0 / 0.2) 100%);
+				linear-gradient(-180deg, rgb(0 0 0 / 0.92) 0%, rgb(0 0 0 / 0.68) 5%, rgb(0 0 0 / 0.24) 30%),
+				linear-gradient(180deg, rgb(0 0 0 / 0.64) 0%, transparent 94%, var(--black) 100%);
 			}
 		}
 	}

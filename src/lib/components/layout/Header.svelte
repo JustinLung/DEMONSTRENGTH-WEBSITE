@@ -16,6 +16,7 @@
 	const showButton = $derived(Boolean(cta));
 
 	let isOpen = $state(false);
+	let isScrolled = $state(false);
 
 	let mediaQuery: MediaQueryList;
 
@@ -35,11 +36,17 @@
 		}
 	}
 
+	function handleScroll() {
+		isScrolled = window.scrollY > 24;
+	}
+
 	onMount(() => {
 		if (typeof window !== 'undefined') {
 			mediaQuery = window.matchMedia('(min-width: 48em)');
 			mediaQuery.addEventListener('change', handleResize);
 
+			handleScroll();
+			window.addEventListener('scroll', handleScroll, { passive: true });
 			window.addEventListener('keydown', handleKeyDown);
 		}
 	});
@@ -48,10 +55,15 @@
 		if (mediaQuery) {
 			mediaQuery.removeEventListener('change', handleResize);
 		}
+
+		if (typeof window !== 'undefined') {
+			window.removeEventListener('scroll', handleScroll);
+			window.removeEventListener('keydown', handleKeyDown);
+		}
 	});
 </script>
 
-<header class="container">
+<header class="container" class:scrolled={isScrolled}>
 	<a href={brand.href} class="main-title" aria-label={brand.title}>
 		<img src="/images/logo-demonstrength.png" alt={brand.title} class="brand-logo" />
 	</a>
@@ -118,6 +130,11 @@
 			z-index: -1;
 			width: 100vw;
 			transform: translateX(-50%);
+			background-color: transparent;
+			transition: background-color 0.2s ease;
+		}
+
+		&.scrolled::before {
 			background-color: rgb(0 0 0 / 0.75);
 		}
 
