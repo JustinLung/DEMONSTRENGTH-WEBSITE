@@ -5,6 +5,7 @@
 	const { data }: { data: PageData } = $props();
 	const aboutPage = $derived(data.aboutPage);
 	const collageImages = $derived(aboutPage.showcase.images);
+	const closingLink = $derived(aboutPage.showcase.closingLink);
 </script>
 
 <Seo
@@ -41,13 +42,11 @@
 					<p>{paragraph}</p>
 				{/each}
 
-				{#if aboutPage.showcase.closingText || aboutPage.showcase.closingLink}
+				{#if aboutPage.showcase.closingText || closingLink}
 					<p>
 						{aboutPage.showcase.closingText}
-						{#if aboutPage.showcase.closingLink}
-							<a href={aboutPage.showcase.closingLink.href}
-								>{aboutPage.showcase.closingLink.title}</a
-							>.
+						{#if closingLink}
+							<a href={closingLink.href}>{closingLink.title}</a>.
 						{/if}
 					</p>
 				{/if}

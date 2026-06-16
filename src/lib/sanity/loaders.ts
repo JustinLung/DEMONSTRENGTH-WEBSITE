@@ -39,11 +39,8 @@ const fallbackAboutPage = {
 			'Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper.',
 			'Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet.'
 		],
-		closingText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Read more',
-		closingLink: {
-			href: '/#reviews',
-			title: 'placeholder content'
-		}
+		closingText: '',
+		closingLink: undefined as { href: string; title: string } | undefined
 	}
 };
 
@@ -120,6 +117,10 @@ type SanityTermsAndConditionsPage = Partial<TermsAndConditionsPageData> & {
 
 function hasItems<T>(items: T[] | undefined): items is T[] {
 	return Array.isArray(items) && items.length > 0;
+}
+
+function hasLink(link: Partial<{ href: string; title: string }> | undefined) {
+	return link?.href && link.title ? { href: link.href, title: link.title } : undefined;
 }
 
 export async function loadHomePage(): Promise<HomePageData> {
@@ -206,10 +207,7 @@ export async function loadAboutPage(): Promise<AboutPageData> {
 				paragraphs: hasItems(data.showcase?.paragraphs)
 					? data.showcase.paragraphs
 					: fallbackAboutPage.showcase.paragraphs,
-				closingLink: {
-					...fallbackAboutPage.showcase.closingLink,
-					...data.showcase?.closingLink
-				}
+				closingLink: hasLink(data.showcase?.closingLink)
 			}
 		};
 	} catch (error) {

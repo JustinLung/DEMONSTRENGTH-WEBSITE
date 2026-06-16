@@ -810,8 +810,42 @@
           },
           {
             "description": "Optional link shown at the end of the about page copy.",
+            "fields": [
+              {
+                "name": "title",
+                "type": "string"
+              },
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "uri",
+                        "constraint": {
+                          "options": {
+                            "scheme": [
+                              "/^http$/",
+                              "/^https$/",
+                              "/^mailto$/",
+                              "/^tel$/"
+                            ],
+                            "allowRelative": true,
+                            "relativeOnly": false,
+                            "allowCredentials": false
+                          }
+                        }
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "href",
+                "type": "url",
+                "title": "URL"
+              }
+            ],
             "name": "closingLink",
-            "type": "link",
+            "type": "object",
             "title": "Closing link"
           }
         ],
