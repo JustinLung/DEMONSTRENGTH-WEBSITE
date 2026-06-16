@@ -86,8 +86,25 @@ export const aboutPage = defineType({
 				defineField({
 					name: 'closingLink',
 					title: 'Closing link',
-					type: 'link',
-					description: 'Optional link shown at the end of the about page copy.'
+					type: 'object',
+					description: 'Optional link shown at the end of the about page copy.',
+					fields: [
+						defineField({
+							name: 'title',
+							title: 'Title',
+							type: 'string'
+						}),
+						defineField({
+							name: 'href',
+							title: 'URL',
+							type: 'url',
+							validation: (Rule) =>
+								Rule.uri({
+									allowRelative: true,
+									scheme: ['http', 'https', 'mailto', 'tel']
+								})
+						})
+					]
 				})
 			]
 		})
