@@ -4,6 +4,7 @@ export type SocialLink = { href: string; label: string };
 
 export const mainLinks: Link[] = [
 	{ href: '/#highlights', title: 'Highlight' },
+	{ href: '/#coaching', title: 'Coaching' },
+	{ href: '/#reviews', title: 'Reviews' },
 	{ href: '/about', title: 'About' },
-	{ href: '/#reviews', title: 'Reviews' }
 ];
