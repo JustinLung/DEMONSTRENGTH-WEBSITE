@@ -30,16 +30,6 @@
 			{/each}
 		</section>
 	{/each}
-
-	<div class="contact-info">
-		<h2>{termsPage.contact.title}</h2>
-
-		<p>
-			{#each termsPage.contact.lines as line}
-				<span>{line}</span>
-			{/each}
-		</p>
-	</div>
 </section>
 
 <style lang="postcss">
@@ -51,13 +41,8 @@
 	}
 
 	.intro,
-	.terms-section,
-	.contact-info {
+	.terms-section {
 		display: grid;
 		gap: 12px;
-	}
-
-	.contact-info span {
-		display: block;
 	}
 </style>

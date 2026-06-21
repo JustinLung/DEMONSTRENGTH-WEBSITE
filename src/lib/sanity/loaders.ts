@@ -78,13 +78,7 @@ const fallbackTermsAndConditionsPage = {
 	],
 	contact: {
 		title: 'Placeholder Contact',
-		lines: [
-			'Placeholder Company',
-			'Placeholder Address',
-			'Placeholder Phone',
-			'Placeholder Email',
-			'Placeholder Website'
-		]
+		lines: [] as string[]
 	}
 };
 
@@ -115,12 +109,37 @@ type SanityTermsAndConditionsPage = Partial<TermsAndConditionsPageData> & {
 	contact?: Partial<TermsAndConditionsPageData['contact']>;
 };
 
+const hiddenTermsPlaceholders = new Set([
+	'Placeholder Company',
+	'Placeholder Address',
+	'Placeholder Phone',
+	'Placeholder Email',
+	'Placeholder Website'
+]);
+
 function hasItems<T>(items: T[] | undefined): items is T[] {
 	return Array.isArray(items) && items.length > 0;
 }
 
 function hasLink(link: Partial<{ href: string; title: string }> | undefined) {
 	return link?.href && link.title ? { href: link.href, title: link.title } : undefined;
+}
+
+function removeTermsPlaceholders(sections: TermsAndConditionsPageData['sections']) {
+	return sections
+		.map((section) => ({
+			...section,
+			paragraphs: section.paragraphs
+				.map((paragraph) =>
+					paragraph
+						.split('\n')
+						.filter((line) => !hiddenTermsPlaceholders.has(line.trim().replace(/^\./, '')))
+						.join('\n')
+						.trim()
+				)
+				.filter(Boolean)
+		}))
+		.filter((section) => section.paragraphs.length > 0);
 }
 
 export async function loadHomePage(): Promise<HomePageData> {
@@ -234,7 +253,7 @@ export async function loadTermsAndConditionsPage(): Promise<TermsAndConditionsPa
 				...data.hero
 			},
 			sections: hasItems(data.sections)
-				? data.sections
+				? removeTermsPlaceholders(data.sections)
 				: fallbackTermsAndConditionsPage.sections,
 			contact: {
 				...fallbackTermsAndConditionsPage.contact,
