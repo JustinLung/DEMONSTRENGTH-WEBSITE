@@ -1,4 +1,9 @@
 <script lang="ts">
+	import {
+		getImageDimensions,
+		optimizedSanityImageSrcset,
+		optimizedSanityImageUrl
+	} from '$lib/utils/images';
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
 	import { easeOutExpo } from '$lib/utils/transition';
@@ -18,6 +23,9 @@
 		image = { src: '/images/placeholder.svg', alt: 'Placeholder' }
 	}: AboutInterface = $props();
 
+	const imageDimensions = $derived(getImageDimensions(image.src));
+	const imageWidths = [480, 800, 1200, 1600];
+
 	onMount(() => {
 		gsap.to('.about-image, .about-text', {
 			opacity: 1,
@@ -35,7 +43,17 @@
 </script>
 
 <section class="container" id="about">
-	<img src={image.src} alt={image.alt} class="about-image" draggable="false" />
+	<img
+		src={optimizedSanityImageUrl(image.src, { width: 1200, quality: 75 })}
+		srcset={optimizedSanityImageSrcset(image.src, imageWidths, { quality: 75 })}
+		sizes="(min-width: 75em) 800px, 100vw"
+		alt={image.alt}
+		class="about-image"
+		draggable="false"
+		loading="lazy"
+		width={imageDimensions?.width}
+		height={imageDimensions?.height}
+	/>
 	<div class="about-text">
 		<h2>{title}</h2>
 		<p>{description}</p>

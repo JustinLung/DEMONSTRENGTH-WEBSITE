@@ -5,6 +5,11 @@
 	import { fade, scale } from 'svelte/transition';
 	import { portal } from 'svelte-portal';
 
+	import {
+		getImageDimensions,
+		optimizedSanityImageSrcset,
+		optimizedSanityImageUrl
+	} from '$lib/utils/images';
 	import Review from './Review.svelte';
 	import gsap from 'gsap';
 	import { easeOutExpo } from '$lib/utils/transition';
@@ -54,6 +59,7 @@
 	const subtitleId = 'reviews-description';
 	const dialogTitleId = 'testimonial-dialog-title';
 	const dialogDescriptionId = 'testimonial-dialog-description';
+	const dialogImageWidths = [480, 640, 800, 1040];
 
 	function updateButtonStates() {
 		if (!embla) return;
@@ -257,10 +263,17 @@
 		>
 			<h2 id={dialogTitleId} class="visually-hidden">Testimonial from {selectedReview.name}</h2>
 			{#if selectedReview.image?.src}
+				{@const imageDimensions = getImageDimensions(selectedReview.image.src)}
 				<img
-					src={selectedReview.image.src}
+					src={optimizedSanityImageUrl(selectedReview.image.src, { width: 800, quality: 75 })}
+					srcset={optimizedSanityImageSrcset(selectedReview.image.src, dialogImageWidths, {
+						quality: 75
+					})}
+					sizes="min(100vw, 520px)"
 					alt={selectedReview.image.alt ?? `Foto van ${selectedReview.name}`}
 					class="testimonial-image"
+					width={imageDimensions?.width}
+					height={imageDimensions?.height}
 				/>
 			{/if}
 			<blockquote id={dialogDescriptionId}>

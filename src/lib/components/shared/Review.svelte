@@ -1,4 +1,10 @@
 <script lang="ts">
+	import {
+		getImageDimensions,
+		optimizedSanityImageSrcset,
+		optimizedSanityImageUrl
+	} from '$lib/utils/images';
+
 	type ReviewImage = {
 		src: string;
 		alt?: string;
@@ -21,16 +27,23 @@
 		onOpen,
 		readMoreLabel = 'Lees meer'
 	}: ReviewInterface = $props();
+
+	const imageDimensions = $derived(getImageDimensions(image?.src));
+	const imageWidths = [320, 480, 640, 800];
 </script>
 
 <article class={classes}>
 	<div>
 		{#if image?.src}
 			<img
-				src={image.src}
+				src={optimizedSanityImageUrl(image.src, { width: 640, quality: 75 })}
+				srcset={optimizedSanityImageSrcset(image.src, imageWidths, { quality: 75 })}
+				sizes="min(100vw, 340px)"
 				alt={image.alt ?? `Foto van ${name}`}
 				class="review-image"
 				loading="lazy"
+				width={imageDimensions?.width}
+				height={imageDimensions?.height}
 			/>
 		{/if}
 		<p>{review}</p>

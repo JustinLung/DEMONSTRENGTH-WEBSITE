@@ -1,11 +1,17 @@
 <script lang="ts">
 	import Seo from '$lib/components/shared/Seo.svelte';
+	import {
+		getImageDimensions,
+		optimizedSanityImageSrcset,
+		optimizedSanityImageUrl
+	} from '$lib/utils/images';
 	import type { PageData } from './$types';
 
 	const { data }: { data: PageData } = $props();
 	const aboutPage = $derived(data.aboutPage);
 	const collageImages = $derived(aboutPage.showcase.images);
 	const closingLink = $derived(aboutPage.showcase.closingLink);
+	const collageWidths = [320, 480, 640, 800, 960, 1200];
 </script>
 
 <Seo
@@ -25,13 +31,46 @@
 		<div class="showcase-shell">
 			<div class="image-collage" aria-hidden="true">
 				<div class="image-card image-card-small">
-					<img src={collageImages[0]?.src} alt={collageImages[0]?.alt || ''} draggable="false" />
+					<img
+						src={optimizedSanityImageUrl(collageImages[0]?.src, { width: 640, quality: 72 })}
+						srcset={optimizedSanityImageSrcset(collageImages[0]?.src, collageWidths, {
+							quality: 72
+						})}
+						sizes="(min-width: 64em) 25vw, 30vw"
+						alt={collageImages[0]?.alt || ''}
+						draggable="false"
+						loading="lazy"
+						width={getImageDimensions(collageImages[0]?.src)?.width}
+						height={getImageDimensions(collageImages[0]?.src)?.height}
+					/>
 				</div>
 				<div class="image-card image-card-medium">
-					<img src={collageImages[1]?.src} alt={collageImages[1]?.alt || ''} draggable="false" />
+					<img
+						src={optimizedSanityImageUrl(collageImages[1]?.src, { width: 800, quality: 72 })}
+						srcset={optimizedSanityImageSrcset(collageImages[1]?.src, collageWidths, {
+							quality: 72
+						})}
+						sizes="(min-width: 64em) 28vw, 33vw"
+						alt={collageImages[1]?.alt || ''}
+						draggable="false"
+						loading="lazy"
+						width={getImageDimensions(collageImages[1]?.src)?.width}
+						height={getImageDimensions(collageImages[1]?.src)?.height}
+					/>
 				</div>
 				<div class="image-card image-card-large">
-					<img src={collageImages[2]?.src} alt={collageImages[2]?.alt || ''} draggable="false" />
+					<img
+						src={optimizedSanityImageUrl(collageImages[2]?.src, { width: 960, quality: 72 })}
+						srcset={optimizedSanityImageSrcset(collageImages[2]?.src, collageWidths, {
+							quality: 72
+						})}
+						sizes="(min-width: 64em) 32vw, 37vw"
+						alt={collageImages[2]?.alt || ''}
+						draggable="false"
+						loading="lazy"
+						width={getImageDimensions(collageImages[2]?.src)?.width}
+						height={getImageDimensions(collageImages[2]?.src)?.height}
+					/>
 				</div>
 			</div>
 

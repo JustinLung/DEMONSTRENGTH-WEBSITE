@@ -1,4 +1,9 @@
 <script lang="ts">
+	import {
+		getImageDimensions,
+		optimizedSanityImageSrcset,
+		optimizedSanityImageUrl
+	} from '$lib/utils/images';
 	import { onMount } from 'svelte';
 	import { portal } from 'svelte-portal';
 	import { fly, scale } from 'svelte/transition';
@@ -27,6 +32,9 @@
 	let isOpen = $state(false);
 	let generatedThumbnailSrc = $state<string>();
 	const posterSrc = $derived(thumbnailSrc || generatedThumbnailSrc);
+	const posterDimensions = $derived(posterSrc ? getImageDimensions(posterSrc) : undefined);
+	const thumbnailWidths = [320, 480, 640, 800, 960, 1200];
+	const modalWidths = [640, 960, 1200, 1600];
 
 	const openModal = () => {
 		isOpen = true;
@@ -128,7 +136,16 @@
 		<span class="tag">{tag}</span>
 	</div>
 	{#if posterSrc}
-		<img src={posterSrc} alt={thumbnailAlt} class="thumbnail" />
+		<img
+			src={optimizedSanityImageUrl(posterSrc, { width: 800, quality: 72 })}
+			srcset={optimizedSanityImageSrcset(posterSrc, thumbnailWidths, { quality: 72 })}
+			sizes="(min-width: 64em) 401px, 301px"
+			alt={thumbnailAlt}
+			class="thumbnail"
+			loading="lazy"
+			width={posterDimensions?.width}
+			height={posterDimensions?.height}
+		/>
 	{/if}
 </article>
 
@@ -149,7 +166,15 @@
 					<source src={videoSrc} type={videoType || 'video/mp4'} />
 				</video>
 			{:else if mediaType === 'image'}
-				<img src={posterSrc} alt={thumbnailAlt} class="modal-image" />
+				<img
+					src={optimizedSanityImageUrl(posterSrc, { width: 1200, quality: 75 })}
+					srcset={optimizedSanityImageSrcset(posterSrc, modalWidths, { quality: 75 })}
+					sizes="min(90vw, 800px)"
+					alt={thumbnailAlt}
+					class="modal-image"
+					width={posterDimensions?.width}
+					height={posterDimensions?.height}
+				/>
 			{/if}
 		</div>
 	</div>

@@ -1,4 +1,9 @@
 <script lang="ts">
+	import {
+		getImageDimensions,
+		optimizedSanityImageSrcset,
+		optimizedSanityImageUrl
+	} from '$lib/utils/images';
 	import { onDestroy, onMount } from 'svelte';
 
 	type CrossfadeImage = {
@@ -23,6 +28,8 @@
 	let activeIndex = $state(0);
 	let intervalId: ReturnType<typeof setInterval> | undefined;
 	let mediaQuery: MediaQueryList | undefined;
+
+	const heroWidths = [640, 960, 1280, 1600, 1920, 2560, 3200];
 
 	function startSlideshow() {
 		if (intervalId || images.length <= 1 || mediaQuery?.matches) return;
@@ -64,12 +71,18 @@
 <section class="image-crossfade-section {classes}" aria-hidden="true">
 	<div class="crossfade-images" style:--transition-ms={`${transitionMs}ms`}>
 		{#each images as image, index}
+			{@const dimensions = getImageDimensions(image.src)}
 			<img
-				src={image.src}
+				src={optimizedSanityImageUrl(image.src, { width: 1920, quality: 72 })}
+				srcset={optimizedSanityImageSrcset(image.src, heroWidths, { quality: 72 })}
+				sizes="100vw"
 				alt=""
 				class:active={index === activeIndex}
 				draggable="false"
 				loading={index === 0 ? 'eager' : 'lazy'}
+				fetchpriority={index === 0 ? 'high' : 'auto'}
+				width={dimensions?.width}
+				height={dimensions?.height}
 			/>
 		{/each}
 	</div>

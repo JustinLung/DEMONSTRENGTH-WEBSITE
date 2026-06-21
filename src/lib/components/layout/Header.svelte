@@ -65,7 +65,15 @@
 
 <header class="container" class:scrolled={isScrolled}>
 	<a href={brand.href} class="main-title" aria-label={brand.title}>
-		<img src="/images/logo-demonstrength.png" alt={brand.title} class="brand-logo" />
+		<img
+			src="/images/logo-demonstrength-140.png"
+			srcset="/images/logo-demonstrength-140.png 1x, /images/logo-demonstrength-280.png 2x"
+			alt={brand.title}
+			class="brand-logo"
+			width="99"
+			height="140"
+			fetchpriority="high"
+		/>
 	</a>
 	<nav class="desktop-nav">
 		<ul>
