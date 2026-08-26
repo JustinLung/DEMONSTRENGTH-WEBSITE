@@ -33,6 +33,11 @@ export const homePage = defineType({
 			type: 'coachingSection'
 		}),
 		defineField({
+			name: 'numbers',
+			title: 'Numbers',
+			type: 'numbersSection'
+		}),
+		defineField({
 			name: 'highlights',
 			title: 'Highlights',
 			type: 'highlightsSection'

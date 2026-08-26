@@ -2,6 +2,7 @@ import {
 	homepage as fallbackHomepage,
 	site as fallbackSite
 } from '$lib/utils/data/placeholderData';
+import type { NumbersSectionData } from '$lib/utils/data/placeholderData';
 import { sanityFetch } from './client';
 import {
 	aboutPageQuery,
@@ -84,11 +85,12 @@ const fallbackTermsAndConditionsPage = {
 
 type TermsAndConditionsPageData = typeof fallbackTermsAndConditionsPage;
 
-type SanityHomePage = Partial<HomePageData> & {
+type SanityHomePage = Omit<Partial<HomePageData>, 'numbers'> & {
 	seo?: Partial<HomePageData['seo']>;
 	hero?: Partial<HomePageData['hero']>;
 	about?: Partial<HomePageData['about']>;
 	coaching?: Partial<HomePageData['coaching']>;
+	numbers?: Partial<NumbersSectionData>;
 	cta?: Partial<HomePageData['cta']>;
 };
 
@@ -187,6 +189,14 @@ export async function loadHomePage(): Promise<HomePageData> {
 					? data.coaching.items
 					: fallbackHomepage.coaching.items
 			},
+			numbers:
+				data.numbers?.title && data.numbers.image?.src && hasItems(data.numbers.items)
+					? {
+							title: data.numbers.title,
+							image: data.numbers.image,
+							items: data.numbers.items
+						}
+					: undefined,
 			highlights: hasItems(data.highlights) ? data.highlights : fallbackHomepage.highlights,
 			review: hasItems(data.review) ? data.review : fallbackHomepage.review,
 			cta: {

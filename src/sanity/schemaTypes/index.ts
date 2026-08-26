@@ -7,6 +7,7 @@ import { coachingSection } from './sections/coachingSection';
 import { ctaSection } from './sections/ctaSection';
 import { heroSection } from './sections/heroSection';
 import { highlightsSection } from './sections/highlightsSection';
+import { numbersSection } from './sections/numbersSection';
 import { reviewsSection } from './sections/reviewsSection';
 import { aboutPage } from './documents/aboutPage';
 import { homePage } from './documents/homePage';
@@ -22,6 +23,7 @@ export const schemaTypes = [
 	aboutSection,
 	coachingSection,
 	highlightsSection,
+	numbersSection,
 	reviewsSection,
 	ctaSection,
 	aboutPage,

@@ -2,6 +2,7 @@
 	import Hero from '$lib/components/shared/Hero.svelte';
 	import About from '$lib/components/shared/About.svelte';
 	import Coaching from '$lib/components/shared/Coaching.svelte';
+	import Numbers from '$lib/components/shared/Numbers.svelte';
 	import Reviews from '$lib/components/shared/Reviews.svelte';
 	import Carousel from '$lib/components/shared/Carousel.svelte';
 	import CrossfadeImages from '$lib/components/shared/CrossfadeImages.svelte';
@@ -34,6 +35,9 @@
 />
 <CrossfadeImages images={homepageData.hero.images} />
 <Coaching {...homepageData.coaching} />
+{#if homepageData.numbers}
+	<Numbers {...homepageData.numbers} />
+{/if}
 <Carousel title={homepageData.highlightTitle} items={homepageData.highlights} />
 
 <Reviews

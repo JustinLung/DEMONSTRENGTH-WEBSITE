@@ -1,5 +1,18 @@
 const placeholderImage = '/images/placeholder.svg';
 
+export type NumbersSectionData = {
+	title: string;
+	image: {
+		src: string;
+		alt?: string;
+	};
+	items: {
+		value: number;
+		suffix?: string;
+		label: string;
+	}[];
+};
+
 export const site = {
 	header: {
 		brand: {
@@ -94,6 +107,7 @@ export const homepage = {
 			'Direct contact voor vragen, motivatie en accountability'
 		]
 	},
+	numbers: undefined as NumbersSectionData | undefined,
 	cta: {
 		title: 'Klaar om',
 		highlight: 'te starten?',
