@@ -94,6 +94,19 @@ export const homepage = {
 			'Direct contact voor vragen, motivatie en accountability'
 		]
 	},
+	numbers: {
+		title: 'Strength in numbers',
+		image: {
+			src: placeholderImage,
+			alt: 'Athletes celebrating after a competition'
+		},
+		items: [
+			{ value: 7, suffix: '+', label: 'Years of experience' },
+			{ value: 220, suffix: '+', label: 'Athletes coached' },
+			{ value: 20000, suffix: '+', label: 'Kilograms PR’d' },
+			{ value: 400, suffix: '+', label: 'Medals earned' }
+		]
+	},
 	cta: {
 		title: 'Klaar om',
 		highlight: 'te starten?',

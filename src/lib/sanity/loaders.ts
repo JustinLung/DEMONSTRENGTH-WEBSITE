@@ -89,6 +89,7 @@ type SanityHomePage = Partial<HomePageData> & {
 	hero?: Partial<HomePageData['hero']>;
 	about?: Partial<HomePageData['about']>;
 	coaching?: Partial<HomePageData['coaching']>;
+	numbers?: Partial<HomePageData['numbers']>;
 	cta?: Partial<HomePageData['cta']>;
 };
 
@@ -186,6 +187,16 @@ export async function loadHomePage(): Promise<HomePageData> {
 				items: hasItems(data.coaching?.items)
 					? data.coaching.items
 					: fallbackHomepage.coaching.items
+			},
+			numbers: {
+				...fallbackHomepage.numbers,
+				...data.numbers,
+				image: {
+					...fallbackHomepage.numbers.image,
+					...data.coaching?.image,
+					...data.numbers?.image
+				},
+				items: hasItems(data.numbers?.items) ? data.numbers.items : fallbackHomepage.numbers.items
 			},
 			highlights: hasItems(data.highlights) ? data.highlights : fallbackHomepage.highlights,
 			review: hasItems(data.review) ? data.review : fallbackHomepage.review,

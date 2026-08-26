@@ -33,6 +33,18 @@ export const homePageQuery = `*[_type == "homePage"][0]{
 			"alt": image.alt
 		}
 	},
+	numbers{
+		title,
+		"image": {
+			"src": image.asset->url,
+			"alt": image.alt
+		},
+		items[]{
+			value,
+			suffix,
+			label
+		}
+	},
 	"highlightTitle": highlights.title,
 	"highlights": highlights.items[]{
 		tag,
