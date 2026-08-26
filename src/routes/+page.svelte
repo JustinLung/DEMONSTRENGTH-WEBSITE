@@ -35,7 +35,9 @@
 />
 <CrossfadeImages images={homepageData.hero.images} />
 <Coaching {...homepageData.coaching} />
-<Numbers {...homepageData.numbers} />
+{#if homepageData.numbers}
+	<Numbers {...homepageData.numbers} />
+{/if}
 <Carousel title={homepageData.highlightTitle} items={homepageData.highlights} />
 
 <Reviews
