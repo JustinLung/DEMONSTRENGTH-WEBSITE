@@ -34,11 +34,44 @@ export const coachingSection = defineType({
 			validation: (Rule) => Rule.required()
 		}),
 		defineField({
-			name: 'items',
-			title: 'Included items',
+			name: 'tabs',
+			title: 'Additional content tabs',
+			description:
+				'Add two or more entries to show a tab selector. One entry is shown without the selector. With no entries, the regular included content is used.',
 			type: 'array',
-			of: [{ type: 'string' }],
-			validation: (Rule) => Rule.min(1)
+			of: [
+				{
+					type: 'object',
+					name: 'coachingTab',
+					title: 'Coaching tab',
+					fields: [
+						defineField({
+							name: 'label',
+							title: 'Tab label',
+							type: 'string',
+							validation: (Rule) => Rule.required()
+						}),
+						defineField({
+							name: 'title',
+							title: 'Content title',
+							type: 'string'
+						}),
+						defineField({
+							name: 'items',
+							title: 'Content items',
+							type: 'array',
+							of: [{ type: 'string' }],
+							validation: (Rule) => Rule.required().min(1)
+						})
+					],
+					preview: {
+						select: {
+							title: 'label',
+							subtitle: 'title'
+						}
+					}
+				}
+			]
 		})
 	]
 });

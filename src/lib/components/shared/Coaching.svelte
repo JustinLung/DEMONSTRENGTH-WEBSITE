@@ -8,6 +8,13 @@
 		alt?: string;
 	};
 
+	type CoachingTab = {
+		_key?: string;
+		label: string;
+		title?: string;
+		items: string[];
+	};
+
 	interface CoachingProps {
 		eyebrow?: string;
 		title: string;
@@ -15,6 +22,7 @@
 		image?: CoachingImage;
 		includedTitle: string;
 		items: string[];
+		tabs?: CoachingTab[];
 	}
 
 	const {
@@ -23,8 +31,43 @@
 		description,
 		image = { src: '/images/placeholder.svg', alt: 'Coaching' },
 		includedTitle,
-		items
+		items,
+		tabs = []
 	}: CoachingProps = $props();
+
+	let activeTabIndex = $state(0);
+	const validTabs = $derived(
+		tabs.filter((tab) => tab.label?.trim() && tab.items?.length)
+	);
+	const showTabList = $derived(validTabs.length > 1);
+	const activeContent = $derived(
+		validTabs[activeTabIndex] ?? {
+			title: includedTitle,
+			items
+		}
+	);
+
+	function selectTab(index: number) {
+		activeTabIndex = index;
+	}
+
+	function handleTabKeydown(event: KeyboardEvent, index: number) {
+		if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+
+		event.preventDefault();
+		const lastIndex = validTabs.length - 1;
+		const nextIndex =
+			event.key === 'Home'
+				? 0
+				: event.key === 'End'
+					? lastIndex
+					: event.key === 'ArrowRight'
+						? (index + 1) % validTabs.length
+						: (index - 1 + validTabs.length) % validTabs.length;
+
+		selectTab(nextIndex);
+		document.getElementById(`coaching-tab-${nextIndex}`)?.focus();
+	}
 
 	onMount(() => {
 		gsap.fromTo(
@@ -69,12 +112,41 @@
 	</div>
 
 	<div class="coaching-card coaching-reveal">
-		<h3>{includedTitle}</h3>
-		<ul>
-			{#each items as item}
-				<li>{item}</li>
-			{/each}
-		</ul>
+		{#if showTabList}
+			<div class="coaching-tabs" role="tablist" aria-label="Coaching information">
+				{#each validTabs as tab, index (tab._key ?? tab.label)}
+					<button
+						id={`coaching-tab-${index}`}
+						type="button"
+						role="tab"
+						aria-selected={activeTabIndex === index}
+						aria-controls="coaching-tab-panel"
+						tabindex={activeTabIndex === index ? 0 : -1}
+						class:active={activeTabIndex === index}
+						onclick={() => selectTab(index)}
+						onkeydown={(event) => handleTabKeydown(event, index)}
+					>
+						{tab.label}
+					</button>
+				{/each}
+			</div>
+		{/if}
+
+		<div
+			id="coaching-tab-panel"
+			class="coaching-tab-panel"
+			role={showTabList ? 'tabpanel' : undefined}
+			aria-labelledby={showTabList ? `coaching-tab-${activeTabIndex}` : undefined}
+		>
+			{#if activeContent.title}
+				<h3>{activeContent.title}</h3>
+			{/if}
+			<ul>
+				{#each activeContent.items as item}
+					<li>{item}</li>
+				{/each}
+			</ul>
+		</div>
 	</div>
 </section>
 
@@ -161,6 +233,49 @@
 		@media (--lg) {
 			padding: 40px;
 		}
+	}
+
+	.coaching-tabs {
+		display: flex;
+		gap: 8px;
+		margin-bottom: 28px;
+		padding-bottom: 12px;
+		overflow-x: auto;
+		border-bottom: 1px solid rgb(255 255 255 / 0.1);
+	}
+
+	.coaching-tabs button {
+		flex: 0 0 auto;
+		border: 1px solid rgb(255 255 255 / 0.14);
+		border-radius: 9999px;
+		padding: 9px 16px;
+		background: transparent;
+		color: rgb(255 255 255 / 0.65);
+		font: inherit;
+		font-size: 0.875rem;
+		font-weight: 600;
+		cursor: pointer;
+		transition:
+			border-color 160ms ease,
+			background-color 160ms ease,
+			color 160ms ease;
+	}
+
+	.coaching-tabs button:hover,
+	.coaching-tabs button:focus-visible {
+		border-color: rgb(255 255 255 / 0.35);
+		color: var(--white);
+	}
+
+	.coaching-tabs button:focus-visible {
+		outline: 2px solid var(--primary);
+		outline-offset: 2px;
+	}
+
+	.coaching-tabs button.active {
+		border-color: var(--primary);
+		background: var(--primary);
+		color: var(--white);
 	}
 
 	h3 {

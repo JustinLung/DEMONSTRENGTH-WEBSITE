@@ -28,6 +28,12 @@ export const homePageQuery = `*[_type == "homePage"][0]{
 		description,
 		"includedTitle": includedTitle,
 		items,
+		tabs[]{
+			_key,
+			label,
+			title,
+			items
+		},
 		"image": {
 			"src": image.asset->url,
 			"alt": image.alt

@@ -187,7 +187,10 @@ export async function loadHomePage(): Promise<HomePageData> {
 				},
 				items: hasItems(data.coaching?.items)
 					? data.coaching.items
-					: fallbackHomepage.coaching.items
+					: fallbackHomepage.coaching.items,
+				tabs: hasItems(data.coaching?.tabs)
+					? data.coaching.tabs
+					: fallbackHomepage.coaching.tabs
 			},
 			numbers:
 				data.numbers?.title && data.numbers.image?.src && hasItems(data.numbers.items)

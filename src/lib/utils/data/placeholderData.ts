@@ -105,7 +105,13 @@ export const homepage = {
 			'Techniekfeedback op je lifts via videoanalyse',
 			'Voedingsadvies dat past bij je training en levensstijl',
 			'Direct contact voor vragen, motivatie en accountability'
-		]
+		],
+		tabs: [] as Array<{
+			_key?: string;
+			label: string;
+			title?: string;
+			items: string[];
+		}>
 	},
 	numbers: undefined as NumbersSectionData | undefined,
 	cta: {
